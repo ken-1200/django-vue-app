@@ -185,6 +185,7 @@ export default {
       } else {
         // 画像あり
         el.fields.item_img = "http://localhost:8001/media/" + el.fields.item_img;
+        console.log(el.fields.item_img);
       }
     });
 
