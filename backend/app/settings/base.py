@@ -133,10 +133,8 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8081',
-    'http://127.0.0.1:8001',
-    'http://127.0.0.1:8000',
-    'http://app-django-vue-dev.ap-northeast-1.elasticbeanstalk.com',
+    'http://localhost:8000',
+    'http://localhost:8080',
 )
 
 CORS_ALLOW_HEADERS = [

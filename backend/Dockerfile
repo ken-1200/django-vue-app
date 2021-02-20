@@ -18,3 +18,6 @@ RUN pip install -U drf-yasg
 RUN pip install django-cors-headers
 RUN pip install Pillow
 RUN pip install drf-extra-fields
+RUN pip install django-storages
+RUN pip install boto3
+RUN pip install psycopg2-binary
