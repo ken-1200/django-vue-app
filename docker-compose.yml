@@ -5,7 +5,7 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     image: mysql:5.7.12
     ports:
-      - 13306:3306
+      - 3306:3306
     environment:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     command: python3 manage.py runserver 0.0.0.0:8000
     ports:
-      - 8001:8000
+      - 8000:8000
     environment:
       - MYSQL_HOST=${MYSQL_HOST}
       - MYSQL_PORT=${MYSQL_PORT}
@@ -29,7 +29,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
     volumes:
-      - ./backend:cached
+      - ./backend
     depends_on:
       - db
   vue_web:
@@ -42,8 +42,8 @@ services:
     entrypoint: sh
     command: -c "yarn install && yarn run serve"
     ports:
-      - 8081:8080
+      - 8080:8080
     volumes:
-      - ./frontend:cached
+      - ./frontend
     stdin_open: true
     tty: true
