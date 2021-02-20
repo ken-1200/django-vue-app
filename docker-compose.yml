@@ -29,7 +29,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
     volumes:
-      - ./backend
+      - ./backend:/app:cached
     depends_on:
       - db
   vue_web:
@@ -44,6 +44,6 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./frontend
+      - ./frontend:/app
     stdin_open: true
     tty: true
