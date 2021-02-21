@@ -157,10 +157,10 @@ export default {
       // 画像なし
       if (el.fields.item_img == "") {
         // サンプル
-        el.fields.item_img = "http://localhost:8001/media/image/sampleImage.jpg";
+        el.fields.item_img = "http://localhost:8000/media/image/sampleImage.jpg";
       } else {
         // 画像あり
-        el.fields.item_img = "http://localhost:8001/media/" + el.fields.item_img;
+        el.fields.item_img = "http://localhost:8000/media/" + el.fields.item_img;
       }
 
       // 在庫表示判定
@@ -210,6 +210,16 @@ export default {
 .fade-leave {
   /* 現れる時の最後の状態, 消える時の最初の状態 */
   opacity: 1;
+}
+.container {
+  padding-top: 0px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+.row--dense {
+  margin-right: -4px;
+  margin-left: -4px;
+  padding-top: 4px;
 }
 .v-card__actions {
   align-items: center;

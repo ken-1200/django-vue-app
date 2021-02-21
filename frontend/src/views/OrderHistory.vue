@@ -86,6 +86,12 @@ export default {
     // 購入情報表示
     this.paymentInfo = this.$store.getters.paymentInfo;
 
+    // 購入履歴がない場合
+    console.log(this.paymentInfo.length);
+    if (this.paymentInfo.length == 0) {
+      return this.error = "購入履歴がありません。"
+    }
+
     // moment 
     const moment = require('moment-timezone');
 
@@ -117,11 +123,7 @@ export default {
     });
 
     // エラー
-    this.error = this.$store.getters.error;
+    this.error = this.$store.getters.errorInfo;
   }
 }
 </script>
-
-<style lang="scss">
-  
-</style>

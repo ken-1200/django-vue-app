@@ -23,7 +23,7 @@
                 <v-card-subtitle
                   class="mb-10"
                   style="font-size: 1.12rem"
-                >ご購入いただいたあなたへのクーポン!</v-card-subtitle>
+                >ご購入いただいたあなたへのクーポンをプレゼント!</v-card-subtitle>
                 <img class="coupon__img" src="../../public/image/coupon1.jpg" alt="">
               </v-card>
             </v-col>

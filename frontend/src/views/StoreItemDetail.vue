@@ -39,11 +39,9 @@
 
         <v-file-input
           @change="onImageUploaded"
-          label="写真"
-          filled
+          show-size
           placeholder="クリックしてください。"
           prepend-icon="mdi-camera"
-          background-color="#fbfbfb"
         ></v-file-input>
 
         <v-textarea
@@ -91,7 +89,7 @@
           class="mr-4"
           @click="validate"
         >
-          編集ボタン
+          編集内容を登録する
         </v-btn>
 
         <v-btn
@@ -99,7 +97,7 @@
           class="mr-4"
           @click="reset"
         >
-          リセットボタン
+          登録内容をリセットする
         </v-btn>
       </v-form>
     </v-container>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-container style="height: 800px">
+    <v-container style="height: 800px;">
       <!-- 商品投稿 -->
       <v-card-title id="titleInfo__title">商品を登録する</v-card-title>
       <v-card-subtitle id="titleInfo__subtitle">あなただけの商品を登録しましょう</v-card-subtitle>
@@ -35,11 +35,9 @@
 
         <v-file-input
           @change="onImageUploaded"
-          label="写真"
-          filled
+          show-size
           placeholder="クリックしてください。"
           prepend-icon="mdi-camera"
-          background-color="#fbfbfb"
         ></v-file-input>
 
         <v-textarea
@@ -93,7 +91,7 @@
           class="mr-4"
           @click="reset"
         >
-          編集する
+          登録内容をリセットする
         </v-btn>
       </v-form>
     </v-container>

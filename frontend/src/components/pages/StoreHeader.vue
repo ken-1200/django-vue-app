@@ -53,7 +53,7 @@
           :key="i"
           @click="clickMenu(i)"
         >
-          <v-list-item-title>
+          <v-list-item-title style="overflow: initial;">
             <v-row
               align="center"
               justify="space-around"
