@@ -115,7 +115,8 @@ export default {
   background-color: #fbfbfb;
 }
 .container {
-  padding: 0px !important;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
 }
 .v-tab {
   margin-left: 14px !important;

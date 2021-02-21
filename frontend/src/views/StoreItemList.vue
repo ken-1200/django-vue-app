@@ -178,14 +178,13 @@ export default {
 
     // 画像を表示
     this.detailItems.forEach(el => {
-      // 画像がないものはこっち
+      // 画像がないもの
       if (el.fields.item_img == "") {
         // サンプル
-        el.fields.item_img = "http://localhost:8001/media/image/sampleImage.jpg";
+        el.fields.item_img = "http://localhost:8000/media/image/sampleImage.jpg";
       } else {
         // 画像あり
-        el.fields.item_img = "http://localhost:8001/media/" + el.fields.item_img;
-        console.log(el.fields.item_img);
+        el.fields.item_img = "http://localhost:8000/media/" + el.fields.item_img;
       }
     });
 
@@ -262,6 +261,7 @@ export default {
     font-weight: 400;
     line-height: 1.375rem;
     letter-spacing: .0071428571em;
+    margin-bottom: 8px;
   }
 }
 </style>

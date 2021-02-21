@@ -170,12 +170,12 @@ export default {
 
     // 該当する商品を格納
     getSelectItems.forEach(el => {
-      // 画像がないものはこっち
+      // 画像なし
       if (el.fields.item_img == "") {
-        el.fields.item_img = "http://localhost:8001/media/image/sampleImage.jpg";
+        el.fields.item_img = "http://localhost:8000/media/image/sampleImage.jpg";
       } else {
         // 画像あり
-        el.fields.item_img = "http://localhost:8001/media/" + el.fields.item_img;
+        el.fields.item_img = "http://localhost:8000/media/" + el.fields.item_img;
       }
 
       // 表示する情報を格納
