@@ -14,7 +14,7 @@ Vue.filter('addComma', v => {
 });
 
 // baseURL
-axios.defaults.baseURL = 'http://localhost:8000/api/'
+axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 
 // 再描画時に実行するのでmain.jsに記載
 store.dispatch('autoLogin').then(() => {
