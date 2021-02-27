@@ -1,4 +1,10 @@
 module.exports = {
+  pages: {
+    index: {
+      entry: 'src/main.js',
+      title: 'FURISODEサンプルサイト',
+    },
+  },
   css: {
     loaderOptions: {
       scss: {
@@ -7,7 +13,7 @@ module.exports = {
     }
   },
   devServer: {
-    public: 'http://furrisode.com',
+    public: 'https://furrisode.com',
     disableHostCheck: true,
-  }
+  },
 };

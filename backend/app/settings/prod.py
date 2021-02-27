@@ -16,7 +16,7 @@ if READ_ENV_FILE:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 # パブリックIPv4アドレス(EIP)/ パブリックIPv4DNS/ CNAME プロパティの値
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['furrisode.com']
 
 # S3共通の設定(本番)
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
