@@ -176,15 +176,18 @@ export default {
     await this.$store.dispatch('getItem');
     this.detailItems = this.$store.getters.storeItemData;
 
+    // 画像取得用のURL
+    const getImageUrl = process.env.VUE_APP_BASE_URL;
+
     // 画像を表示
     this.detailItems.forEach(el => {
       // 画像がないもの
       if (el.fields.item_img == "") {
         // サンプル
-        el.fields.item_img = "http://localhost:8000/media/image/sampleImage.jpg";
+        el.fields.item_img = getImageUrl + "image/sampleImage.jpg";
       } else {
         // 画像あり
-        el.fields.item_img = "http://localhost:8000/media/" + el.fields.item_img;
+        el.fields.item_img = getImageUrl + el.fields.item_img;
       }
     });
 

@@ -168,14 +168,18 @@ export default {
     // 該当する商品を取得
     const getSelectItems = this.$store.getters.selectItems(Number(this.$route.params.id));
 
+    // 画像取得用のURL
+    const getImageUrl = process.env.VUE_APP_BASE_URL;
+
     // 該当する商品を格納
     getSelectItems.forEach(el => {
       // 画像なし
       if (el.fields.item_img == "") {
-        el.fields.item_img = "http://localhost:8000/media/image/sampleImage.jpg";
+        // サンプル
+        el.fields.item_img = getImageUrl + "image/sampleImage.jpg";
       } else {
         // 画像あり
-        el.fields.item_img = "http://localhost:8000/media/" + el.fields.item_img;
+        el.fields.item_img = getImageUrl + el.fields.item_img;
       }
 
       // 表示する情報を格納

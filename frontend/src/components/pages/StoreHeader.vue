@@ -18,7 +18,7 @@
       id="toolbar__title"
     >
       <router-link
-        to="/"
+        to="/store_home"
         class="toolbar__link"
       >
         FURISODE
