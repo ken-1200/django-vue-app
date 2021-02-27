@@ -1,0 +1,23 @@
+version: '3'
+services:
+  gunicorn:
+    build:
+      context: ./
+      dockerfile: Dockerfile.ecs
+    container_name: gunicorn
+    volumes:
+      - gunicorn:/var/run/gunicorn
+  nginx:
+    build:
+      context: ./
+      dockerfile: Dockerfile.nginx
+    container_name: nginx
+    depends_on:
+      - gunicorn
+    ports:
+      - "80:80"
+    volumes:
+      - gunicorn:/var/run/gunicorn
+volumes:
+  gunicorn:
+    driver: local

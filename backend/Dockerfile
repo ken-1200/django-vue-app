@@ -21,3 +21,4 @@ RUN pip install drf-extra-fields
 RUN pip install django-storages
 RUN pip install boto3
 RUN pip install psycopg2-binary
+RUN pip install django-environ
