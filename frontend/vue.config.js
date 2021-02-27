@@ -7,6 +7,7 @@ module.exports = {
     }
   },
   devServer: {
+    public: 'http://furrisode.com',
     disableHostCheck: true,
-  },
+  }
 };
