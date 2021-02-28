@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   devServer: {
-    public: 'https://furrisode.com',
+    // public: 'https://furrisode.com',
     disableHostCheck: true,
   },
 };
