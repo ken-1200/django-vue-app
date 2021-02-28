@@ -232,5 +232,6 @@ export default {
 }
 .v-list {
   text-align: left;
+  background-color: $cWhite;
 }
 </style>

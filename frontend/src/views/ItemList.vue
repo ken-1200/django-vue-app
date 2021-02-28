@@ -1,101 +1,106 @@
 <template>
-  <div id="app">
-    <!-- 商品一覧 -->
-    <v-container fluid>
-      <v-layout wrap row>
-        <v-flex cols=12 md=3 xl=4>
-          <v-carousel
-            :continuous="true"
-            :cycle="cycle"
-            :show-arrows="true"
-            hide-delimiter-background
-            delimiter-icon="mdi-minus"
-            height="800"
+  <!-- 商品一覧 -->
+  <v-container fluid>
+    <v-layout wrap row>
+      <v-flex cols=12 md=3 xl=4>
+        <v-carousel
+          :continuous="true"
+          :cycle="cycle"
+          :show-arrows="true"
+          hide-delimiter-background
+          delimiter-icon="mdi-minus"
+          height="800"
+          style="opacity: 0.76;"
+        >
+          <v-carousel-item
+            v-for="(slide, i) in slides"
+            :key="i"
+            :src="slide.src"
           >
-            <v-carousel-item
-              v-for="(slide, i) in slides"
-              :key="i"
-              :src="slide.src"
-            >
-            </v-carousel-item>
-          </v-carousel>
+          </v-carousel-item>
+        </v-carousel>
 
-          <v-card outlined color="#f4f7fa">
-            <v-card-title id="titleInfo">Infomation</v-card-title>
-            <v-card-text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a leo ante. Vivamus ac lacinia diam. Aenean sed magna ligula. Vivamus ultrices euismod sapien, non egestas erat semper quis. Curabitur lorem erat, finibus at fringilla ut, egestas id sapien. Suspendisse dignissim felis vitae urna ultrices varius. Integer vulputate augue scelerisque.
-            </v-card-text>
+        <v-card 
+          outlined
+          color="#79816c"
+          style="color: white"
+        >
+          <v-card-title id="titleInfo">Infomation</v-card-title>
+          <v-card-text style="color: white">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a leo ante. Vivamus ac lacinia diam. Aenean sed magna ligula. Vivamus ultrices euismod sapien, non egestas erat semper quis. Curabitur lorem erat, finibus at fringilla ut, egestas id sapien. Suspendisse dignissim felis vitae urna ultrices varius. Integer vulputate augue scelerisque.
+          </v-card-text>
 
-            <v-card-title class="item_list">NEW FURISODE ARRIVAL</v-card-title>
-          </v-card>
+          <v-card-title
+            class="item_list"
+          >NEW FURISODE ARRIVAL</v-card-title>
+        </v-card>
 
-          <!-- エラー -->
-          <template v-if="isErrored">{{ error }}</template>
+        <!-- エラー -->
+        <template v-if="isErrored">{{ error }}</template>
 
-          <transition-group
-            name="fade"
-            tag="div"
-            class="row row--dense"
-            @beforeEnter="beforeEnter"
+        <transition-group
+          name="fade"
+          tag="div"
+          class="row row--dense"
+          @beforeEnter="beforeEnter"
+        >
+          <v-col
+            v-for="(item, index) in items"
+            :key="index"
+            class="d-flex child-flex"
+            cols=12 md=3 xl=4
           >
-            <v-col
-              v-for="(item, index) in items"
-              :key="index"
-              class="d-flex child-flex"
-              cols=12 md=3 xl=4
+            <v-card
+              @click.stop="itemDetail(item.pk)"
+              elevation-24
+              hover
+              outlined
             >
-              <v-card
-                @click.stop="itemDetail(item.pk)"
-                elevation-24
-                hover
-                outlined
+              <v-img
+                :src="item.fields.item_img"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                aspect-ratio="1"
+                height="200px"
               >
-                <v-img
-                  :src="item.fields.item_img"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  aspect-ratio="1"
-                  height="200px"
-                >
 
-                  <!-- プログレス -->
-                  <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center"
-                    >
-                      <v-progress-circular
-                        indeterminate
-                        color="grey lighten-5"
-                      ></v-progress-circular>
-                    </v-row>
-                  </template>
-                </v-img>
+                <!-- プログレス -->
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
+                  >
+                    <v-progress-circular
+                      indeterminate
+                      color="grey lighten-5"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
 
-                <!-- タイトル/サブタイトル -->
-                <v-list-item three-line>
-                  <v-list-item-content>
-                    <v-list-item-title
-                      v-text="item.fields.item_name"
-                    ></v-list-item-title>
-                    <v-list-item-subtitle
-                      v-text="item.fields.item_detail"
-                    >
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-icon x-small>{{ item.fields.item_price }}</v-icon>
-                  <v-icon x-small style="margin-left: 5px">{{ item.fields.item_total }}</v-icon>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </transition-group>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+              <!-- タイトル/サブタイトル -->
+              <v-list-item three-line>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="item.fields.item_name"
+                  ></v-list-item-title>
+                  <v-list-item-subtitle
+                    v-text="item.fields.item_detail"
+                  >
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-icon x-small>{{ item.fields.item_price }}</v-icon>
+                <v-icon x-small style="margin-left: 5px">{{ item.fields.item_total }}</v-icon>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </transition-group>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -104,13 +109,6 @@ export default {
     return {
       items: [],
       error: null,
-      colors: [
-        'green',
-        'secondary',
-        'yellow darken-4',
-        'red lighten-2',
-        'orange darken-1',
-      ],
       cycle: true,
       slides: [
         {
@@ -241,6 +239,8 @@ export default {
     letter-spacing: .0125em;
     line-height: 2rem;
     word-break: break-all;
+    color: $cWhite;
+    font-weight: bold;
   }
 
   &__subtitle {
@@ -257,6 +257,7 @@ export default {
 .item_list {
   justify-content: center;
   font-size: 1.7rem;
+  font-weight: bold;
 }
 .v-image {
   z-index: 0;

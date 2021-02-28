@@ -1,18 +1,49 @@
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Economica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  padding-left: 5px;
-  padding-right: 5px;
+  color: $cWhite !important;
+  background-color: #79816c;
 }
-
 a {
   text-decoration: none;
-  color: #2c3e50 !important;
+  color: $cWhite !important;
 }
-
 body {
   overflow: hidden;
+}
+.theme--light.v-sheet--outlined {
+  border: none;
+}
+.theme--light.v-sheet {
+  background-color: #79816c;
+  color: $cWhite;
+}
+.v-btn {
+  &__content {
+    font-weight: bold;
+  }
+}
+.theme--light.v-list-item .v-list-item__subtitle {
+  color: $cWhite !important;
+}
+.theme--light.v-card>.v-card__text {
+  color: $cWhite !important;
+}
+.theme--light.v-card .v-card__subtitle {
+  color: $cWhite !important;
+}
+.theme--light.v-btn.v-btn--has-bg {
+  background-color: #79816c;
+}
+.theme--light.v-data-table {
+  background-color: #79816c;
+  color: white;
+}
+.v-data-table tr:nth-child(odd) td {
+  background: #79816c;
+}
+.v-data-table tr:hover td {
+  background-color: #909982;
 }

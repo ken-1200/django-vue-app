@@ -41,7 +41,8 @@
       ></v-text-field>
 
       <v-btn
-        color="primary"
+        color="darkblueshade"
+        style="color: white;"
         class="mr-4"
         @click="registerButton"
       >

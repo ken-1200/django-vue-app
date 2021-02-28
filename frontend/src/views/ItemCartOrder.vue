@@ -15,7 +15,7 @@
               class="ma-10"
               width="80%"
               height="60px"
-              color="success"
+              color="background"
               @click.stop="purchase"
             >
               購入を確定する
@@ -44,15 +44,6 @@
             <!-- 注文内容 -->
           <v-card outlined>
             <v-card-subtitle>注文内容</v-card-subtitle>
-
-            <!-- <v-img
-              flex
-              contain
-              lazy-src="https://picsum.photos/id/11/10/6"
-              max-height="114"
-              max-width="76"
-              src="https://picsum.photos/id/11/500/600"
-            ></v-img> -->
 
             <v-data-table
               :headers="headers"
@@ -263,7 +254,7 @@ h1 {
   justify-content: center;
   padding: 0px;
   height: 100px;
-  background-color: #dbdbdb;
+  background-color: #79816c;
   font-size: 21px;
 }
 .row {
@@ -287,7 +278,7 @@ h1 {
   padding: 5px 15px;
 
   &__heading {
-    color: #666;
+    color: $cWhite;
     display: table-cell;
     font-size: 13px;
     text-align: right;

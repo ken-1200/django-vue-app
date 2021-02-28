@@ -4,7 +4,7 @@
     app
     fixed
     max-height="112"
-    color="#ECEFF1"
+    color="#526f65"
     elevate-on-scroll
   >
 
@@ -37,6 +37,7 @@
           icon
           v-bind="attrs"
           v-on="on"
+          style="color: white;"
         >
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
@@ -53,7 +54,12 @@
               align="center"
               justify="space-around"
             >
-              <v-btn depressed>
+              <v-btn
+                class="ma-2"
+                color="background"
+                depressed
+                style="color: white;"
+              >
                 {{ item.title }}
               </v-btn>
             </v-row>
@@ -74,15 +80,6 @@
         <v-tab to="/item_list">
           PRODUCT LISTS
         </v-tab>
-        <v-tab>
-          PRODUCT DETAIL(仮)
-        </v-tab>
-        <v-tab>
-          BLOG(仮)
-        </v-tab>
-        <v-tab>
-          CATEGORY(仮)
-        </v-tab>
         <v-row justify="center">
           <v-dialog
             v-model="dialog"
@@ -93,26 +90,27 @@
               <v-tab
                 v-bind="attrs"
                 v-on="on"
+                style="color: white;"
               >
                 USER LOGOUT
               </v-tab>
             </template>
-            <v-card>
+            <v-card style="color: white;">
               <v-card-title class="headline">
                 ログアウトしますか？
               </v-card-title>
-              <v-card-text>選択してください</v-card-text>
+              <v-card-text style="color: white;">選択してください</v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
-                  color="green darken-1"
+                  color="white"
                   text
                   @click="dialog = false"
                 >
                   キャンセル
                 </v-btn>
                 <v-btn
-                  color="green darken-1"
+                  color="white"
                   text
                   @click="dialog = false"
                   @click.stop="logout"
@@ -134,9 +132,9 @@ export default {
   data() {
     return {
       items: [
-        { title: '設定（仮）'},
-        { title: 'ヘルプ（仮）' },
-        { title: 'お問い合わせ（仮）' },
+        { title: 'ユーザーホーム'},
+        { title: '商品をみる' },
+        { title: '注文履歴をみる' },
         { title: 'ログアウト' },         
       ],
       dialog: false,
@@ -146,19 +144,19 @@ export default {
     clickMenu(index) {
       switch (index) {
         case 0:
-          this.$router.push('/');
+          this.$router.push('/user_home');
           break;
         case 1:
-          this.$router.push('/');
+          this.$router.push('/item_list');
           break;        
         case 2:
-          this.$router.push('/');
+          this.$router.push('/member/order/history');
           break;
         case 3:
           this.logout();
           break;
         default:
-          this.$router.push('/');
+          this.$router.push('/user_home');
       }
     },
     logout() {
