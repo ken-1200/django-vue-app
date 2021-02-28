@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <!-- logoにしたいな -->
-    <h1>FURISODE</h1>
     <v-container fluid>
       <v-layout wrap row>
         <v-flex cols=12 md=3 xl=4>
+          <!-- logoにしたいな -->
+          <h1>FURISODE</h1>
 
           <!-- ヘッダー -->
           <v-card
@@ -402,7 +402,7 @@ export default {
 <style lang="scss" scoped>
 h1 {
   font-family: 'YuMincho';
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 400;
   letter-spacing: -.015625em;
 }
