@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :style="{ background: $vuetify.theme.themes.light.background }">
     <!-- スクロール用 -->
     <div class="nav-trigger"></div>
     <div class="nav-spacing"></div>
@@ -114,7 +114,7 @@ export default {
   }
 }
 .v-main {
-  background-color: #fbfbfb;
+  background-color: #79816c;
 }
 .container {
   padding-right: 0px !important;

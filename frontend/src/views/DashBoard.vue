@@ -1,81 +1,73 @@
 <template>
-  <div id="app">
-    <v-container>
-<!--
-  --------------------------------------------
-  / ストア側
--->
-      <!-- ストアにしますか -->
-      <v-card-title>Welcome to Shop Owner!</v-card-title>
-      <v-card-subtitle>あなたのお店を登録しましょう</v-card-subtitle>
+  <v-container>
+    <v-card-title style="font-weight: bold;">新しいお店にようこそ！</v-card-title>
+    <v-card-subtitle>あなたのお店を登録しましょう。このボタンから登録をすれば簡単にショップのオーナーになれます。ゲストログインもありますので、気軽にお試しください！</v-card-subtitle>
 
-      <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a leo ante. Vivamus ac lacinia diam. Aenean sed magna ligula. Vivamus ultrices euismod sapien, non egestas erat semper quis. Curabitur lorem erat, finibus at fringilla ut, egestas id sapien. Suspendisse dignissim felis vitae urna ultrices varius. Integer vulputate augue scelerisque.
-      </v-card-text>
+    <v-card-text>
+      Welcome to the new store! Register your store. You can easily become a shop owner by registering from this button.There is also a guest login, so feel free to try it!
+    </v-card-text>
 
-      <!-- ボタン -->
-      <v-card
-        width="100%"
-        outlined
+    <!-- ボタン -->
+    <v-card
+      width="100%"
+      outlined
+    >
+      <v-btn
+        class="ma-10"
+        width="80%"
+        height="60px"
+        color="#79816c"
+        style="color: white;"
+        @click.stop="goToShop"
       >
-        <v-btn
-          class="ma-10"
-          width="80%"
-          height="60px"
-          color="success"
-          @click.stop="goToShop"
-        >
-          ショップを開設する
-        </v-btn>
-      </v-card>
-<!--
-  --------------------------------------------
-  / ユーザー側
--->
-      <!-- ユーザーにしますか -->
-      <v-card-title>Welcome to User!</v-card-title>
-      <v-card-subtitle>お気に入りの商品を見つけましょう</v-card-subtitle>
-      <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a leo ante. Vivamus ac lacinia diam. Aenean sed magna ligula. Vivamus ultrices euismod sapien, non egestas erat semper quis. Curabitur lorem erat, finibus at fringilla ut, egestas id sapien. Suspendisse dignissim felis vitae urna ultrices varius. Integer vulputate augue scelerisque.
-      </v-card-text>
+        ショップを開設する
+      </v-btn>
+    </v-card>
 
-      <!-- ボタン -->
-      <v-card
-        width="100%"
-        outlined
+    <v-card-title style="font-weight: bold;">好きな商品を購入しましょう！</v-card-title>
+    <v-card-subtitle>お気に入りの商品を見つけて購入しましょう。このボタンから登録をすればスムーズに商品を購入できるようになります。ゲストログインもありますので、気軽にお試しください！</v-card-subtitle>
+    <v-card-text>
+      Find and buy your favorite products. If you register from this button, you will be able to purchase products smoothly. There is also a guest login, so feel free to try it!
+    </v-card-text>
+
+    <!-- ボタン -->
+    <v-card
+      width="100%"
+      outlined
+    >
+      <v-btn
+        class="ma-10"
+        width="80%"
+        height="60px"
+        color="#79816c"
+        style="color: white;"
+        @click.stop="goToUser"
       >
-        <v-btn
-          class="ma-10"
-          width="80%"
-          height="60px"
-          color="success"
-          @click.stop="goToUser"
-        >
-          新規登録する
-        </v-btn>
-      </v-card>
+        新規登録する
+      </v-btn>
+    </v-card>
 
-      <!-- ショップオーナー既に登録している方 -->
-      <v-card-title>既にショップオーナーの方</v-card-title>
-      <v-card-subtitle>こちらからログインしてください</v-card-subtitle>
+    <!-- ショップオーナー既に登録している方 -->
+    <v-card-title style="font-weight: bold;">既にショップオーナーの方！</v-card-title>
+    <v-card-subtitle>こちらからログインしてください。</v-card-subtitle>
 
-      <!-- ボタン -->
-      <v-card
-        width="100%"
-        outlined
+    <!-- ボタン -->
+    <v-card
+      width="100%"
+      outlined
+    >
+      <v-btn
+        class="ma-10"
+        width="80%"
+        height="60px"
+        color="#79816c"
+        style="color: white;"
+        @click.stop="goToStoreLogin"
       >
-        <v-btn
-          class="ma-10"
-          width="80%"
-          height="60px"
-          color="success"
-          @click.stop="goToStoreLogin"
-        >
-          ログインする
-        </v-btn>
-      </v-card>
-    </v-container>
-  </div>
+        ログインする
+      </v-btn>
+    </v-card>
+  </v-container>
 </template>
 
 <script>

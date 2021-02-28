@@ -1,104 +1,104 @@
 <template>
-  <div id="app">
-    <!-- 商品詳細一覧 -->
-    <v-container fluid>
-      <v-card-title id="titleInfo__title">公開中の商品一覧</v-card-title>
-      <v-card-subtitle id="titleInfo__subtitle">あなたの商品をここで確認しましょう</v-card-subtitle>
+  
+  <!-- 商品詳細一覧 -->
+  <v-container fluid>
+    <v-card-title id="titleInfo__title">公開中の商品一覧</v-card-title>
+    <v-card-subtitle id="titleInfo__subtitle">あなたの商品をここで確認しましょう</v-card-subtitle>
 
-      <!-- エラー -->
-      <template v-if="isErrored">{{ error }}</template>
+    <!-- エラー -->
+    <template v-if="isErrored">{{ error }}</template>
 
-      <v-layout wrap row>
-        <v-flex cols=12 md=3 xl=4>
-          <transition-group
-            name="fade"
-            tag="div"
-            class="row row--dense"
-            @beforeEnter="beforeEnter"
+    <v-layout wrap row>
+      <v-flex cols=12 md=3 xl=4>
+        <transition-group
+          name="fade"
+          tag="div"
+          class="row row--dense"
+          @beforeEnter="beforeEnter"
+        >
+          <v-col
+            v-for="(item, index) in detailItems"
+            :key="index"
+            class="d-flex child-flex"
+            cols=12 md=3 xl=4
           >
-            <v-col
-              v-for="(item, index) in detailItems"
-              :key="index"
-              class="d-flex child-flex"
-              cols=12 md=3 xl=4
+            <v-card
+              @click.stop="itemEdit(item.pk)"
+              elevation-24
+              hover
+              outlined
             >
-              <v-card
-                @click.stop="itemEdit(item.pk)"
-                elevation-24
-                hover
-                outlined
+              <v-img
+                :src="item.fields.item_img"
+                class="white--text align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                aspect-ratio="1"
+                height="200px"
               >
-                <v-img
-                  :src="item.fields.item_img"
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                  aspect-ratio="1"
-                  height="200px"
-                >
 
-                  <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center"
-                    >
-                      <v-progress-circular
-                        indeterminate
-                        color="grey lighten-5"
-                      ></v-progress-circular>
-                    </v-row>
-                  </template>
-                </v-img>
-
-                <!-- タイトル/サブタイトル -->
-                <v-card-title
-                  v-text="item.fields.item_name"
-                ></v-card-title>
-                <v-card-subtitle
-                  v-text="item.fields.item_detail"
-                ></v-card-subtitle>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn icon>
-                    <v-icon x-small>{{ item.fields.item_price }}円</v-icon>
-                  </v-btn>
-
-                  <v-btn icon>
-                    <v-icon x-small>{{ item.fields.item_total }}個</v-icon>
-                  </v-btn>
-                  <v-menu
-                    bottom
-                    offset-y
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center"
                   >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-icon
-                        class="mr-2"
-                        x-small
-                        v-bind="attrs"
-                        v-on="on"
-                      >
-                        削除
-                      </v-icon>
-                    </template>
-                    <v-list>
-                      <v-list-item
-                        v-for="(dialog, i) in dialogTitle"
-                        :key="i"
-                        @click="clickMenu(i, item.pk)"
-                      >
-                        <v-list-item-title>{{ dialog.title }}</v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
-                </v-card-actions>
-              </v-card>
-            </v-col>
-          </transition-group>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+                    <v-progress-circular
+                      indeterminate
+                      color="grey lighten-5"
+                    ></v-progress-circular>
+                  </v-row>
+                </template>
+              </v-img>
+
+              <!-- タイトル/サブタイトル -->
+              <v-card-title
+                v-text="item.fields.item_name"
+              ></v-card-title>
+              <v-card-subtitle
+                v-text="item.fields.item_detail"
+              ></v-card-subtitle>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon x-small>{{ item.fields.item_price }}円</v-icon>
+                </v-btn>
+
+                <v-btn icon>
+                  <v-icon x-small>{{ item.fields.item_total }}個</v-icon>
+                </v-btn>
+                <v-menu
+                  bottom
+                  offset-y
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-icon
+                      class="mr-2"
+                      x-small
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      削除
+                    </v-icon>
+                  </template>
+                  <v-list>
+                    <v-list-item
+                      v-for="(dialog, i) in dialogTitle"
+                      :key="i"
+                      @click="clickMenu(i, item.pk)"
+                    >
+                      <v-list-item-title>{{ dialog.title }}</v-list-item-title>
+                    </v-list-item>
+                  </v-list>
+                </v-menu>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </transition-group>
+      </v-flex>
+    </v-layout>
+  </v-container>
+
 </template>
 
 <script>

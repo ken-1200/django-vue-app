@@ -4,7 +4,7 @@
     app
     fixed
     max-height="112"
-    color="#ECEFF1"
+    color="#526f65"
     elevate-on-scroll
   >
 
@@ -23,11 +23,6 @@
       >
         FURISODE
       </router-link>
-      <!-- <span
-        class="toolbar__style"
-      >
-        STYLE
-      </span> -->
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -42,6 +37,7 @@
           icon
           v-bind="attrs"
           v-on="on"
+          style="color: white;"
         >
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
@@ -60,8 +56,9 @@
             >
               <v-btn
                 class="ma-2"
-                color="success"
+                color="background"
                 depressed
+                style="color: white;"
               >
                 {{ item.title }}
               </v-btn>
@@ -82,18 +79,6 @@
         </v-tab>
         <v-tab to="/item_list">
           SHOP LISTS
-        </v-tab>
-        <v-tab>
-          ABOUT(仮)
-        </v-tab>
-        <v-tab>
-          BLOG(仮)
-        </v-tab>
-        <v-tab>
-          CATEGORY(仮)
-        </v-tab>
-        <v-tab>
-          CONTACT(仮)
         </v-tab>
       </v-tabs>
     </template>
@@ -143,15 +128,8 @@ export default {
 }
 .toolbar {
   &__link {
-    color: $cVueBlack !important;
-    font-weight: 400;
-    font-size: 1.7rem;
-    font-family: "YuMincho" !important;
-  }
-}
-.tabs {
-  &__link {
-    color: rgba(0,0,0,.54) !important;
+    font-weight: bold;
+    font-size: 2rem;
   }
 }
 img {

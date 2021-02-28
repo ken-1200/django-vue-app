@@ -6,7 +6,7 @@
     <v-card
       flat
       tile
-      color="#ECEFF1"
+      color="#526f65"
     >
       <v-card-text>
         <v-btn
@@ -73,6 +73,6 @@ export default {
 
 <style lang="scss">
 .v-application .VueBlack--text {
-  color: $cVueBlack !important;
+  color: $cWhite !important;
 }
 </style>

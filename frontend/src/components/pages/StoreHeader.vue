@@ -4,7 +4,7 @@
     app
     fixed
     max-height="112"
-    color="#ECEFF1"
+    color="#526f65"
     elevate-on-scroll
   >
 
@@ -23,11 +23,6 @@
       >
         FURISODE
       </router-link>
-      <!-- <span
-        class="toolbar__style"
-      >
-        STYLE
-      </span> -->
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -42,6 +37,7 @@
           icon
           v-bind="attrs"
           v-on="on"
+          style="color: white;"
         >
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
@@ -58,7 +54,12 @@
               align="center"
               justify="space-around"
             >
-              <v-btn depressed>
+              <v-btn
+                class="ma-2"
+                color="background"
+                depressed
+                style="color: white;"
+              >
                 {{ item.title }}
               </v-btn>
             </v-row>
@@ -82,12 +83,6 @@
         <v-tab :to="{ name: 'item_detail', query: { page: $store.getters.store_id } }">
           PRODUCT DETAIL
         </v-tab>
-        <v-tab>
-          BLOG(仮)
-        </v-tab>
-        <v-tab>
-          CATEGORY(仮)
-        </v-tab>
         <v-row justify="center">
           <v-dialog
             v-model="dialog"
@@ -98,26 +93,27 @@
               <v-tab
                 v-bind="attrs"
                 v-on="on"
+                style="color: white;"
               >
                 STORE LOGOUT
               </v-tab>
             </template>
-            <v-card>
+            <v-card style="color: white;">
               <v-card-title class="headline">
                 ログアウトしますか？
               </v-card-title>
-              <v-card-text>選択してください</v-card-text>
+              <v-card-text style="color: white;">選択してください</v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
-                  color="green darken-1"
+                  color="white"
                   text
                   @click="dialog = false"
                 >
                   キャンセル
                 </v-btn>
                 <v-btn
-                  color="green darken-1"
+                  color="white"
                   text
                   @click="dialog = false"
                   @click.stop="logout"
@@ -151,7 +147,7 @@ export default {
     clickMenu(index) {
       switch (index) {
         case 0:
-          this.$router.push('/');
+          this.$router.push('/store_home', () => {});
           break;
         case 1:
           this.$router.push('/item_register');
