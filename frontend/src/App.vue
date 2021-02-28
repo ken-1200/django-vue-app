@@ -1,16 +1,18 @@
 <template>
-<v-app>
-  <div id="app">
+  <v-app>
+    <!-- スクロール用 -->
     <div class="nav-trigger"></div>
     <div class="nav-spacing"></div>
-    <!-- ヘッダー -->
+  
+    <!-- ヘッダークラス -->
     <header class="header">
-      <!-- 認証無しの時に表示 -->
+
+      <!-- 認証なし表示 -->
       <template v-if="!isAuthenticated && !isAuthenticatedUser">
         <Header/>
       </template>
 
-      <!--ストア認証あり -->
+      <!-- ストア認証あり -->
       <template v-if="isAuthenticated">
         <StoreHeader/>
       </template>
@@ -19,19 +21,19 @@
       <template v-if="isAuthenticatedUser">
         <UserHeader/>
       </template>
+
     </header>
 
-    <!-- main -->
+    <!-- メインコンポーネント表示 -->
     <v-main>
       <v-container>
         <router-view></router-view>
       </v-container>
     </v-main>
 
-<!-- フッター -->
+    <!-- フッター -->
     <Footer/>
-  </div>
-</v-app>
+  </v-app>
 </template>
 
 <script>
