@@ -1,11 +1,14 @@
 <template>
-  <div id="app">
+  <v-col
+    cols="auto"
+    md=auto xl=auto
+  >
     <v-container style="height: 1000px;">
       <v-card-title style="font-weight: bold;">Welcome to Sign up Page!</v-card-title>
       <v-card-subtitle>こちらからユーザーとして新規登録してください</v-card-subtitle>
       <UserRegisterForm/>
     </v-container>
-  </div>
+  </v-col>
 </template>
 
 <script>
