@@ -4,7 +4,7 @@
     <!-- 認証無しの時に表示 -->
     <template v-if="!isAuthenticatedUser">
       <v-container style="height: 1000px;">
-        <v-card-title>Welcome to Sign in Page!</v-card-title>
+        <v-card-title style="font-weight: bold;">Welcome to Sign in Page!</v-card-title>
         <v-card-subtitle>こちらからユーザーとしてログインしてください</v-card-subtitle>
         <UserLogin/>
       </v-container>

@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
-    <!-- ストアログイン -->
+  <v-col
+    cols="auto"
+    md=auto xl=auto
+  >
     <!-- 認証無しの時に表示 -->
     <template v-if="!isAuthenticated">
       <v-container style="height: 1000px;">
-        <v-card-title>Welcome to Sign in Page!</v-card-title>
+        <v-card-title style="font-weight: bold;">Welcome to Sign in Page!</v-card-title>
         <v-card-subtitle>こちらからストアにログインしてください</v-card-subtitle>
         <Login/>
       </v-container>
@@ -24,11 +26,11 @@
           </v-btn>
       </v-container>
     </template>
-  </div>
+  </v-col>
 </template>
 
 <script>
-import Login from '../components/Login.vue'
+import Login from '@/components/Login.vue'
 
 export default {
   components: {

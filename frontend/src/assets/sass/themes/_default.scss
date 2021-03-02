@@ -1,49 +1,48 @@
 #app {
-  font-family: 'Economica', sans-serif;
+  font-family: 'Kameron', 'Noto Sans JP', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: $cWhite !important;
-  background-color: #79816c;
+  color: #1c1c1d !important;
+  background-color: #fbfbfb;
 }
 a {
   text-decoration: none;
-  color: $cWhite !important;
+  color: #1c1c1d !important;
+  font-weight: bold !important;
+  z-index: 100;
 }
 body {
   overflow: hidden;
+}
+.v-main {
+  background-color: #fbfbfb;
+  z-index: 0;
 }
 .theme--light.v-sheet--outlined {
   border: none;
 }
 .theme--light.v-sheet {
-  background-color: #79816c;
-  color: $cWhite;
+  background-color: #fbfbfb;
+  color: #1c1c1d;
 }
 .v-btn {
   &__content {
     font-weight: bold;
   }
 }
-.theme--light.v-list-item .v-list-item__subtitle {
-  color: $cWhite !important;
+.v-tab {
+  font-weight: bold;
 }
-.theme--light.v-card>.v-card__text {
-  color: $cWhite !important;
+.theme--light.v-card .v-card__title {
+  font-weight: bold !important;
 }
-.theme--light.v-card .v-card__subtitle {
-  color: $cWhite !important;
-}
-.theme--light.v-btn.v-btn--has-bg {
-  background-color: #79816c;
-}
-.theme--light.v-data-table {
-  background-color: #79816c;
-  color: white;
+.v-list {
+  background-color: #fbfbfb !important;
 }
 .v-data-table tr:nth-child(odd) td {
-  background: #79816c;
+  background: #fbfbfb;
 }
 .v-data-table tr:hover td {
-  background-color: #909982;
+  background-color: #cbdee9;
 }

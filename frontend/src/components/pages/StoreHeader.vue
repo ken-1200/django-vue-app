@@ -4,7 +4,6 @@
     app
     fixed
     max-height="112"
-    color="#526f65"
     elevate-on-scroll
   >
 
@@ -37,7 +36,7 @@
           icon
           v-bind="attrs"
           v-on="on"
-          style="color: white;"
+          style="color: #1c1c1d;"
         >
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
@@ -58,7 +57,7 @@
                 class="ma-2"
                 color="background"
                 depressed
-                style="color: white;"
+                style="color: #1c1c1d;"
               >
                 {{ item.title }}
               </v-btn>
@@ -93,27 +92,27 @@
               <v-tab
                 v-bind="attrs"
                 v-on="on"
-                style="color: white;"
+                style="color: #1c1c1d;"
               >
                 STORE LOGOUT
               </v-tab>
             </template>
-            <v-card style="color: white;">
+            <v-card style="color: #1c1c1d;">
               <v-card-title class="headline">
                 ログアウトしますか？
               </v-card-title>
-              <v-card-text style="color: white;">選択してください</v-card-text>
+              <v-card-text style="color: #1c1c1d;">選択してください</v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
-                  color="white"
+                  color="#1c1c1d"
                   text
                   @click="dialog = false"
                 >
                   キャンセル
                 </v-btn>
                 <v-btn
-                  color="white"
+                  color="#1c1c1d"
                   text
                   @click="dialog = false"
                   @click.stop="logout"

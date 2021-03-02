@@ -2,24 +2,27 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import store from './store';
 
-const StoreLogin = () => import(/* webpackChunkName: "StoreLogin" */"./views/StoreLogin.vue");
-const ItemList = () => import(/* webpackChunkName: "ItemList" */"./views/ItemList.vue");
-const StoreRegister = () => import(/* webpackChunkName: "StoreRegister" */"./views/StoreRegister.vue");
+// ストア
 const DashBoard = () => import(/* webpackChunkName: "DashBoard" */"./views/DashBoard.vue");
-const ItemRegister = () => import(/* webpackChunkName: "ItemRegister" */"./views/ItemRegister.vue");
-const StoreItemList = () => import(/* webpackChunkName: "StoreItemList" */"./views/StoreItemList.vue");
-const StoreItemDetail = () => import(/* webpackChunkName: "StoreItemDetail" */"./views/StoreItemDetail.vue");
-const ItemDetail = () => import(/* webpackChunkName: "ItemDetail" */"./views/ItemDetail.vue");
-const ItemCart = () => import(/* webpackChunkName: "ItemCart" */"./views/ItemCart.vue");
-const ItemCartOrder = () => import(/* webpackChunkName: "ItemCartOrder" */"./views/ItemCartOrder.vue");
-const PaymentConfirmed = () => import(/* webpackChunkName: "PaymentConfirmed" */"./views/PaymentConfirmed.vue");
-const StoreHomePage = () => import(/* webpackChunkName: "StoreHomePage" */"./views/StoreHomePage.vue");
-const OrderHistory = () => import(/* webpackChunkName: "OrderHistory" */"./views/OrderHistory.vue");
+const StoreLogin = () => import(/* webpackChunkName: "StoreLogin" */"./views/Store/StoreLogin.vue");
+const StoreRegister = () => import(/* webpackChunkName: "StoreRegister" */"./views/Store/StoreRegister.vue");
+const StoreItemRegister = () => import(/* webpackChunkName: "StoreItemRegister" */"./views/Store/StoreItemRegister.vue");
+const StoreItemList = () => import(/* webpackChunkName: "StoreItemList" */"./views/Store/StoreItemList.vue");
+const StoreItemDetail = () => import(/* webpackChunkName: "StoreItemDetail" */"./views/Store/StoreItemDetail.vue");
+const StoreHomePage = () => import(/* webpackChunkName: "StoreHomePage" */"./views/Store/StoreHomePage.vue");
 
+// ユーザー
 const UserRegister = () => import(/* webpackChunkName: "UserRegister" */"./views/User/UserRegister.vue");
 const UserLogin = () => import(/* webpackChunkName: "UserLogin" */"./views/User/UserLogin.vue");
 const UserHomePage = () => import(/* webpackChunkName: "UserHomePage" */"./views/User/UserHomePage.vue");
+const OrderHistory = () => import(/* webpackChunkName: "OrderHistory" */"./views/User/OrderHistory.vue");
 
+// 商品
+const ItemList = () => import(/* webpackChunkName: "ItemList" */"./views/Item/ItemList.vue");
+const ItemDetail = () => import(/* webpackChunkName: "ItemDetail" */"./views/Item/ItemDetail.vue");
+const ItemCart = () => import(/* webpackChunkName: "ItemCart" */"./views/Item/ItemCart.vue");
+const ItemCartOrder = () => import(/* webpackChunkName: "ItemCartOrder" */"./views/Item/ItemCartOrder.vue");
+const PaymentConfirmed = () => import(/* webpackChunkName: "PaymentConfirmed" */"./views/PaymentConfirmed.vue");
 
 Vue.use(Router);
 
@@ -58,7 +61,7 @@ export default new Router({
     },
     {
       path: '/item_register',
-      component: ItemRegister,
+      component: StoreItemRegister,
       beforeEnter(to, from, next) {
         if (store.getters.access_token) {//access_tokenがない時は、ログイン画面へ
           next();

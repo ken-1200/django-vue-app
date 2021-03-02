@@ -1,187 +1,185 @@
 <template>
   <v-container fluid>
-    <v-layout wrap row>
-      <v-flex cols=12 md=3 xl=4>
-        <!-- logoにしたいな -->
+    <v-col
+      cols="auto"
+      md=auto xl=auto
+    >
+      <v-card
+        width="100%"
+        outlined
+      >
+        <!-- タイトル -->
         <h1>FURISODE</h1>
 
-        <!-- ヘッダー -->
-        <v-card
-          width="100%"
-          outlined
+        <v-btn
+          class="ma-10"
+          width="80%"
+          height="60px"
+          to="/item_list"
         >
-          <v-btn
-            class="ma-10"
-            width="80%"
-            height="60px"
-            to="/item_list"
-          >
-            買い物を続ける
-          </v-btn>
-        </v-card>
+          買い物を続ける
+        </v-btn>
 
-        <!-- テーブル -->
-        <v-card outlined>
-          <v-card-subtitle>カートの中身</v-card-subtitle>
+      <!-- テーブル -->
+        <v-card-subtitle style="font-weight: bold;">カートの中身</v-card-subtitle>
 
-          <v-data-table
-            :headers="headers"
-            :items="cartInfo"
-            :items-per-page="5"
-            sort-by="price"
-            no-data-text="カートに商品がありません。"
-          >
-          <!-- 編集ダイアログ -->
-            <template v-slot:top>
-              <v-toolbar
-                flat
-              >
-                <v-dialog
-                  v-model="dialog"
-                  max-width="500px"
-                >
-                  <v-card outlined>
-                    <v-card-text>
-                      <v-container>
-                        <v-row class="row-select">
-                          <v-col
-                            cols="12"
-                            sm="6"
-                            md="4"
-                          >
-                            <v-card-title>個数</v-card-title>
-                            <v-select
-                              v-model="editedItem.quantity"
-                              :items="itemQuantity"
-                              label="個数"
-                              dense
-                              solo
-                              no-data-text="在庫がありません。"
-                            ></v-select>
-                          </v-col>
-                        </v-row>
-                      </v-container>
-                    </v-card-text>
-
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn
-                        color="white"
-                        text
-                        @click="close"
-                      >
-                        Cancel
-                      </v-btn>
-                      <v-btn
-                        color="white"
-                        text
-                        @click="save"
-                      >
-                        OK
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-
-                <!-- 削除確認ダイアログ -->
-                <v-dialog v-model="dialogDelete" max-width="500px">
-                  <v-card outlined>
-                    <v-card-title class="headline">この商品を本当に削除しても良いですか？</v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn color="white" text @click="closeDelete">Cancel</v-btn>
-                      <v-btn color="white" text @click="deleteItemConfirm">OK</v-btn>
-                      <v-spacer></v-spacer>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-toolbar>
-            </template>
-
-            <!-- 編集テーブル -->
-            <template v-slot:[`item.actions`]="{ item }">
-              <v-icon
-                small
-                class="mr-2"
-                @click="editItem(item)"
-              >
-                mdi-pencil
-              </v-icon>
-              <v-icon
-                small
-                @click="deleteItem(item)"
-              >
-                mdi-delete
-              </v-icon>
-            </template>
-          </v-data-table>
-
-          <v-divider></v-divider>
-
-          <!-- 小計 -->
-          <v-row>
-            <v-col
-              cols="12"
-              sm="6"
-              md="4"
+        <v-data-table
+          :headers="headers"
+          :items="cartInfo"
+          :items-per-page="5"
+          sort-by="quantity"
+          no-data-text="カートに商品がありません。"
+        >
+        <!-- 編集ダイアログ -->
+          <template v-slot:top>
+            <v-toolbar
+              flat
             >
-              <div class="subTotalBlock__list listTable">
-                <span class="listTable__heading">商品</span>
-                <span class="listTable__content">¥ {{ totalPrice | addComma }}</span>
-              </div>
-              <div class="subTotalBlock__list listTable">
-                <span class="listTable__heading">送料</span>
-                <span class="listTable__content">¥ 0</span>
-              </div>
-            </v-col>
-          </v-row>
+              <v-dialog
+                v-model="dialog"
+                max-width="500px"
+              >
+                <v-card outlined>
+                  <v-card-text>
+                    <v-container>
+                      <v-row class="row-select">
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                        >
+                          <v-card-title>個数</v-card-title>
+                          <v-select
+                            v-model="editedItem.quantity"
+                            :items="itemQuantity"
+                            label="個数"
+                            dense
+                            solo
+                            no-data-text="在庫がありません。"
+                          ></v-select>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card-text>
 
-          <!-- 合計ボタン -->
-          <!-- 認証無しの時に表示 -->
-          <template v-if="!isAuthenticatedUser">
-            <v-container>
-              <v-row>
-                <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-                >
-                  <v-btn
-                    min-width="100%"
-                    color="success"
-                    class="mr-4"
-                    @click="validate"
-                  >
-                    会員登録/ログインして購入する
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-container>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="#1c1c1d"
+                      text
+                      @click="close"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      color="#1c1c1d"
+                      text
+                      @click="save"
+                    >
+                      OK
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+
+              <!-- 削除確認ダイアログ -->
+              <v-dialog v-model="dialogDelete" max-width="500px">
+                <v-card outlined>
+                  <v-card-title class="headline">この商品を本当に削除しても良いですか？</v-card-title>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="#1c1c1d" text @click="closeDelete">Cancel</v-btn>
+                    <v-btn color="#1c1c1d" text @click="deleteItemConfirm">OK</v-btn>
+                    <v-spacer></v-spacer>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-toolbar>
           </template>
-          <!-- 認証あり -->
-          <template v-if="isAuthenticatedUser">
-            <v-container>
-              <v-row>
-                <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-                >
-                  <v-btn
-                    min-width="100%"
-                    color="success"
-                    class="mr-4"
-                    @click="goToPage"
-                  >
-                    確認ページへ
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-container>
+
+          <!-- 編集テーブル -->
+          <template v-slot:[`item.actions`]="{ item }">
+            <v-icon
+              small
+              class="mr-2"
+              @click="editItem(item)"
+            >
+              mdi-pencil
+            </v-icon>
+            <v-icon
+              small
+              @click="deleteItem(item)"
+            >
+              mdi-delete
+            </v-icon>
           </template>
-        </v-card>
-      </v-flex>
-    </v-layout>
+        </v-data-table>
+
+        <v-divider></v-divider>
+
+        <!-- 小計 -->
+        <v-row>
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+          >
+            <div class="subTotalBlock__list listTable">
+              <span class="listTable__heading">商品</span>
+              <span class="listTable__content">¥ {{ totalPrice | addComma }}</span>
+            </div>
+            <div class="subTotalBlock__list listTable">
+              <span class="listTable__heading">送料</span>
+              <span class="listTable__content">¥ 0</span>
+            </div>
+          </v-col>
+        </v-row>
+
+        <!-- 合計ボタン -->
+        <!-- 認証無しの時に表示 -->
+        <template v-if="!isAuthenticatedUser">
+          <v-container>
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+                <v-btn
+                  min-width="100%"
+                  color="success"
+                  class="mr-4"
+                  @click="validate"
+                >
+                  会員登録/ログインして購入する
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+        </template>
+        <!-- 認証あり -->
+        <template v-if="isAuthenticatedUser">
+          <v-container>
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+                md="4"
+              >
+                <v-btn
+                  min-width="100%"
+                  color="success"
+                  class="mr-4"
+                  @click="goToPage"
+                >
+                  確認ページへ
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+        </template>
+      </v-card>
+    </v-col>
   </v-container>
 </template>
 
@@ -216,9 +214,9 @@ export default {
           sortable: false,
           value: 'name',
         },
-        { text: '値段', value: 'price', sortable: false  },
-        { text: '個数', value: 'quantity' },
-        { text: '小計', value: 'subtotal', sortable: false  },
+        { text: '値段', value: 'price', sortable: false },
+        { text: '個数', value: 'quantity'},
+        { text: '小計', value: 'subtotal', sortable: false },
         { text: '編集', value: 'actions', sortable: false },
       ],
       cartInfo: [],
@@ -394,13 +392,16 @@ h1 {
   font-weight: 400;
   letter-spacing: -.015625em;
 }
+.container--fluid {
+  padding: 0px;
+}
 .v-card__subtitle {
   align-items: center;
   display: flex;
   justify-content: center;
   padding: 0px;
   height: 100px;
-  background-color: #79816c;
+  background-color: #fbfbfb;
   font-size: 21px;
 }
 .row-select {
@@ -432,7 +433,7 @@ h1 {
   padding: 5px 15px;
 
   &__heading {
-    color: $cWhite;
+    color: #1c1c1d;
     display: table-cell;
     font-size: 13px;
     text-align: right;
@@ -447,9 +448,9 @@ h1 {
   }
 }
 .v-list {
-  background-color: $cWhite;
+  background-color: #1c1c1d;
 }
 .theme--light.v-toolbar.v-sheet {
-  background-color: #79816c;
+  background-color: #fff;
 }
 </style>

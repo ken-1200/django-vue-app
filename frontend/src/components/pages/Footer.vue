@@ -1,12 +1,11 @@
 <template>
   <v-footer
-    dark
     padless
   >
     <v-card
       flat
       tile
-      color="#526f65"
+      color="#1c1c1d"
     >
       <v-card-text>
         <v-btn
@@ -73,6 +72,6 @@ export default {
 
 <style lang="scss">
 .v-application .VueBlack--text {
-  color: $cWhite !important;
+  color: #cfd0d1 !important;
 }
 </style>

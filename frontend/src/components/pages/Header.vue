@@ -4,7 +4,6 @@
     app
     fixed
     max-height="112"
-    color="#526f65"
     elevate-on-scroll
   >
 
@@ -37,7 +36,7 @@
           icon
           v-bind="attrs"
           v-on="on"
-          style="color: white;"
+          style="color: #1c1c1d;"
         >
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
@@ -58,7 +57,7 @@
                 class="ma-2"
                 color="background"
                 depressed
-                style="color: white;"
+                style="color: #1c1c1d;"
               >
                 {{ item.title }}
               </v-btn>
@@ -75,10 +74,10 @@
         grow
       >
         <v-tab to="/">
-          HOME
-        </v-tab>
-        <v-tab to="/item_list">
-          SHOP LISTS
+            HOME
+          </v-tab>
+          <v-tab to="/item_list">
+            SHOP LISTS
         </v-tab>
       </v-tabs>
     </template>

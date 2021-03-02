@@ -1,110 +1,109 @@
 <template>
-  <div id="app">
-    <!-- logoにしたいな -->
-    <h1>FURISODE</h1>
-    <v-container fluid>
-      <v-layout wrap row>
-        <v-flex cols=12 md=3 xl=4>
+  <v-container fluid>
+    <v-col
+      cols="auto"
+      md=auto xl=auto
+    >
+      <h1>FURISODE</h1>
+
+    <!-- 購入確定ボタン -->
+      <v-card
+        width="100%"
+        outlined
+      >
+        <v-btn
+          class="ma-10"
+          width="80%"
+          height="60px"
+          color="background"
+          @click.stop="purchase"
+        >
+          購入を確定する
+        </v-btn>
+      </v-card>
+      <!-- 購入者情報 -->
+      <v-card-subtitle>購入者情報</v-card-subtitle>
+
+      <v-card outlined>
+        <v-simple-table>
+          <template v-slot:default>
+            <tbody>
+              <tr>
+                <td>氏名</td>
+                <td>{{ getUserName }}</td>
+              </tr>
+              <tr>
+                <td>メールアドレス</td>
+                <td>{{ getUserEmail }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-card>
+
+        <!-- 注文内容 -->
+      <v-card outlined>
+        <v-card-subtitle style="font-weight: bold;">注文内容</v-card-subtitle>
+
+        <v-data-table
+          :headers="headers"
+          :items="cartInfo"
+          hide-default-footer
+          sort-by="quantity"
+          no-data-text="カートに商品がありません。"
+        >
+        </v-data-table>
+
+        <v-divider></v-divider>
+
+        <!-- 小計 -->
+        <v-row>
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+          >
+            <div class="subTotalBlock__list listTable">
+              <span class="listTable__heading">送料</span>
+              <span class="listTable__content">¥ 0</span>
+            </div>
+            <div class="subTotalBlock__list listTable">
+              <span class="listTable__heading">合計</span>
+              <span class="listTable__content">¥ {{ totalPrice | addComma }}</span>
+            </div>
+          </v-col>
+        </v-row>
 
         <!-- 購入確定ボタン -->
-          <v-card
-            width="100%"
-            outlined
-          >
+        <v-divider></v-divider>
+        <v-container
+          outlined
+          width="100%"
+        >
+          <div class="btn__left">
             <v-btn
               class="ma-10"
-              width="80%"
               height="60px"
-              color="background"
+              color="grey"
+              @click="backToPage"
+            >
+              購入画面へ戻る
+            </v-btn>
+          </div>
+          <div class="btn__right">
+            <v-btn
+              class="ma-10"
+              height="60px"
+              color="success"
               @click.stop="purchase"
             >
               購入を確定する
             </v-btn>
-          </v-card>
-          <!-- 購入者情報 -->
-          <v-card-subtitle>購入者情報</v-card-subtitle>
-
-          <v-card outlined>
-            <v-simple-table>
-              <template v-slot:default>
-                <tbody>
-                  <tr>
-                    <td>氏名</td>
-                    <td>{{ getUserName }}</td>
-                  </tr>
-                  <tr>
-                    <td>メールアドレス</td>
-                    <td>{{ getUserEmail }}</td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-card>
-
-            <!-- 注文内容 -->
-          <v-card outlined>
-            <v-card-subtitle>注文内容</v-card-subtitle>
-
-            <v-data-table
-              :headers="headers"
-              :items="cartInfo"
-              hide-default-footer
-              no-data-text="カートに商品がありません。"
-            >
-            </v-data-table>
-
-            <v-divider></v-divider>
-
-            <!-- 小計 -->
-            <v-row>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
-                <div class="subTotalBlock__list listTable">
-                  <span class="listTable__heading">送料</span>
-                  <span class="listTable__content">¥ 0</span>
-                </div>
-                <div class="subTotalBlock__list listTable">
-                  <span class="listTable__heading">合計</span>
-                  <span class="listTable__content">¥ {{ totalPrice | addComma }}</span>
-                </div>
-              </v-col>
-            </v-row>
-
-            <!-- 購入確定ボタン -->
-            <v-divider></v-divider>
-            <v-container
-              outlined
-              width="100%"
-            >
-              <div class="btn__left">
-                <v-btn
-                  class="ma-10"
-                  height="60px"
-                  color="grey"
-                  @click="backToPage"
-                >
-                  購入画面へ戻る
-                </v-btn>
-              </div>
-              <div class="btn__right">
-                <v-btn
-                  class="ma-10"
-                  height="60px"
-                  color="success"
-                  @click.stop="purchase"
-                >
-                  購入を確定する
-                </v-btn>
-              </div>
-            </v-container>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+          </div>
+        </v-container>
+      </v-card>
+    </v-col>
+  </v-container>
 </template>
 
 <script>
@@ -243,8 +242,7 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
-  font-family: 'YuMincho';
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 400;
   letter-spacing: -.015625em;
 }
@@ -254,7 +252,7 @@ h1 {
   justify-content: center;
   padding: 0px;
   height: 100px;
-  background-color: #79816c;
+  background-color: #fbfbfb;
   font-size: 21px;
 }
 .row {
@@ -278,7 +276,7 @@ h1 {
   padding: 5px 15px;
 
   &__heading {
-    color: $cWhite;
+    color: #1c1c1d;
     display: table-cell;
     font-size: 13px;
     text-align: right;
@@ -293,7 +291,7 @@ h1 {
   }
 }
 .v-btn {
-  color: white !important;
+  color: #fbfbfb !important;
 
   &__content {
     align-items: center;

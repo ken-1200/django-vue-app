@@ -1,54 +1,51 @@
 <template>
   <v-container fluid>
-    <v-layout wrap row>
-      <v-flex cols=12 md=3 xl=4>
-        <v-card-title style="font-weight: bold;">購入履歴</v-card-title>
+    <v-col
+      cols="auto"
+      md=auto xl=auto
+    >
+      <v-card-title style="font-weight: bold;">購入履歴</v-card-title>
 
-        <!-- エラー -->
-        <template v-if="isErrored">{{ error }}</template>
+      <!-- エラー -->
+      <template v-if="isErrored">{{ error }}</template>
 
-        <!-- 購入リスト（ペイIDごとにループで表示） -->
-        <v-row>
-          <v-col cols=12>
-            <v-simple-table
-              v-for="(payment, index) in paymentRole"
-              :key="index"
-              style="margin-bottom: 100px"
-            >
-              <template v-slot:default>
-                <thead>
-                  <tr>
-                    <th class="text-left">
-                      注文日時：{{ payment.bought_at }}
-                    </th>
-                    <th class="text-left">
-                      注文数量：{{ payment.pay_totalquantity }}
-                    </th>
-                    <th class="text-left">
-                      合計金額(税込)： ¥{{ payment.pay_totalprice | addComma }}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody
-                  v-for="(role, index) in payment.role"
-                  :key="index"
-                >
-                  <tr>
-                    <td>{{ role.item[0].fields.item_name }}</td>
-                    <td>
-                      ¥{{role.item[0].fields.item_price | addComma}}
-                    </td>
-                    <td>
-                      注文数量：{{ role.item_quantity }}
-                    </td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
-          </v-col>
-        </v-row>
-      </v-flex>
-    </v-layout>
+      <!-- 購入リスト（ペイIDごとにループで表示） -->
+      <v-simple-table
+        v-for="(payment, index) in paymentRole"
+        :key="index"
+        style="margin-bottom: 100px "
+      >
+        <template v-slot:default>
+          <thead>
+            <tr>
+              <th class="text-left">
+                注文日時：{{ payment.bought_at }}
+              </th>
+              <th class="text-left">
+                注文数量：{{ payment.pay_totalquantity }}
+              </th>
+              <th class="text-left">
+                合計金額(税込)： ¥{{ payment.pay_totalprice | addComma }}
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            v-for="(role, index) in payment.role"
+            :key="index"
+          >
+            <tr>
+              <td>{{ role.item[0].fields.item_name }}</td>
+              <td>
+                ¥{{role.item[0].fields.item_price | addComma}}
+              </td>
+              <td>
+                注文数量：{{ role.item_quantity }}
+              </td>
+            </tr>
+          </tbody>
+        </template>
+      </v-simple-table>
+    </v-col>
   </v-container>
 </template>
 

@@ -42,7 +42,7 @@
 
       <v-btn
         color="darkblueshade"
-        style="color: white;"
+        style="color: #fbfbfb;"
         class="mr-4"
         @click="registerButton"
       >

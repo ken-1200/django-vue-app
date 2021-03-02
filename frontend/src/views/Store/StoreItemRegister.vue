@@ -1,99 +1,103 @@
 <template>
-  
   <v-container style="height: 800px;">
-    <!-- 商品投稿 -->
-    <v-card-title id="titleInfo__title">商品を登録する</v-card-title>
-    <v-card-subtitle id="titleInfo__subtitle">あなただけの商品を登録しましょう</v-card-subtitle>
-
-    <!-- アラート -->
-    <v-alert
-      prominent
-      type="error"
-      :value="alert"
+    <v-col
+      cols="auto"
+      md=auto xl=auto
     >
-      <v-row align="center">
-        <v-col class="grow">
-          商品が登録できませんでした。もう一度やり直してください。
-        </v-col>
-      </v-row>
-    </v-alert>
+      <!-- 商品投稿 -->
+      <v-card-title id="titleInfo__title">商品を登録する</v-card-title>
+      <v-card-subtitle id="titleInfo__subtitle">あなただけの商品を登録しましょう</v-card-subtitle>
 
-    <!-- フォーム -->
-    <v-form
-      ref="form"
-      v-model="valid"
-      lazy-validation
-    >
-      <v-text-field
-        v-model="createItems.name"
-        :counter="30"
-        :rules="nameRules"
-        label="商品名"
-        prepend-icon="mdi-shopping"
-        required
-      ></v-text-field>
-
-      <v-file-input
-        @change="onImageUploaded"
-        show-size
-        placeholder="クリックしてください。"
-        prepend-icon="mdi-camera"
-      ></v-file-input>
-
-      <v-textarea
-        v-model="createItems.detail"
-        :rules="detailRules"
-        :placeholder="detailPlaceholder"
-        hint="詳細は500文字以下である必要があります。"
-        counter
-        label="詳細"
-        prepend-icon="mdi-form-textarea"
-      ></v-textarea>
-
-      <v-text-field
-        v-model.number="createItems.price"
-        :rules="priceRules"
-        name="input-10-1"
-        label="値段"
-        type="number"
-        max="10000000"
-        min="100"
-        prepend-icon="mdi-currency-jpy"
-        counter
-        required
-      ></v-text-field>
-
-      <v-text-field
-        v-model.number="createItems.total"
-        :rules="totalRules"
-        name="input-10-1"
-        label="品数"
-        type="number"
-        prepend-icon="mdi-paper-cut-vertical"
-        max="100"
-        min="1"
-        counter
-        required
-      ></v-text-field>
-
-      <v-btn
-        :disabled="!valid"
-        :loading="loading"
-        color="success"
-        class="mr-4"
-        @click="validate"
+      <!-- アラート -->
+      <v-alert
+        prominent
+        type="error"
+        :value="alert"
       >
-        登録する
-      </v-btn>
+        <v-row align="center">
+          <v-col class="grow">
+            商品が登録できませんでした。もう一度やり直してください。
+          </v-col>
+        </v-row>
+      </v-alert>
 
-      <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
+      <!-- フォーム -->
+      <v-form
+        ref="form"
+        v-model="valid"
+        lazy-validation
       >
-        登録内容をリセットする
-      </v-btn>
-    </v-form>
+        <v-text-field
+          v-model="createItems.name"
+          :counter="30"
+          :rules="nameRules"
+          label="商品名"
+          prepend-icon="mdi-shopping"
+          required
+        ></v-text-field>
+
+        <v-file-input
+          @change="onImageUploaded"
+          show-size
+          placeholder="クリックしてください。"
+          prepend-icon="mdi-camera"
+        ></v-file-input>
+
+        <v-textarea
+          v-model="createItems.detail"
+          :rules="detailRules"
+          :placeholder="detailPlaceholder"
+          hint="詳細は500文字以下である必要があります。"
+          counter
+          label="詳細"
+          prepend-icon="mdi-form-textarea"
+        ></v-textarea>
+
+        <v-text-field
+          v-model.number="createItems.price"
+          :rules="priceRules"
+          name="input-10-1"
+          label="値段"
+          type="number"
+          max="10000000"
+          min="100"
+          prepend-icon="mdi-currency-jpy"
+          counter
+          required
+        ></v-text-field>
+
+        <v-text-field
+          v-model.number="createItems.total"
+          :rules="totalRules"
+          name="input-10-1"
+          label="品数"
+          type="number"
+          prepend-icon="mdi-paper-cut-vertical"
+          max="100"
+          min="1"
+          counter
+          required
+        ></v-text-field>
+
+        <v-btn
+          :disabled="!valid"
+          :loading="loading"
+          color="success"
+          class="mr-4"
+          @click="validate"
+        >
+          登録する
+        </v-btn>
+
+        <v-btn
+          color="error"
+          class="mr-4"
+          @click="reset"
+        >
+          登録内容をリセットする
+        </v-btn>
+      </v-form>
+    </v-col>
   </v-container>
 </template>
 
@@ -237,17 +241,16 @@ export default {
     display: flex;
     flex-wrap: wrap;
     font-size: .701rem;
-    font-weight: 500;
     letter-spacing: .0125em;
     line-height: 2rem;
     word-break: break-all;
+    font-weight: bold;
   }
 
   &__subtitle {
     text-align: left;
     padding: 16px;
     font-size: .669rem;
-    font-weight: 400;
     line-height: 1.375rem;
     letter-spacing: .0071428571em;
   }
