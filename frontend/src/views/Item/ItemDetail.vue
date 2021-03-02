@@ -1,5 +1,9 @@
 <template>
-  <div id="app">
+  <v-col
+    style="padding-top: 0px;"
+    cols="auto"
+    md=auto xl=auto
+  >
     <p v-if="isErrored">{{ error }}</p>
 
     <!-- アラート -->
@@ -94,7 +98,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-  </div>
+  </v-col>
 </template>
 
 <script>
@@ -232,6 +236,6 @@ export default {
 }
 .v-list {
   text-align: left;
-  background-color: $cWhite;
+  background-color: #1c1c1d;
 }
 </style>

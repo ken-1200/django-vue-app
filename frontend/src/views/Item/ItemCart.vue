@@ -21,12 +21,13 @@
         </v-btn>
 
       <!-- テーブル -->
-        <v-card-subtitle>カートの中身</v-card-subtitle>
+        <v-card-subtitle style="font-weight: bold;">カートの中身</v-card-subtitle>
 
         <v-data-table
           :headers="headers"
           :items="cartInfo"
           :items-per-page="5"
+          sort-by="quantity"
           no-data-text="カートに商品がありません。"
         >
         <!-- 編集ダイアログ -->
@@ -64,14 +65,14 @@
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn
-                      color="white"
+                      color="#1c1c1d"
                       text
                       @click="close"
                     >
                       Cancel
                     </v-btn>
                     <v-btn
-                      color="white"
+                      color="#1c1c1d"
                       text
                       @click="save"
                     >
@@ -87,8 +88,8 @@
                   <v-card-title class="headline">この商品を本当に削除しても良いですか？</v-card-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="white" text @click="closeDelete">Cancel</v-btn>
-                    <v-btn color="white" text @click="deleteItemConfirm">OK</v-btn>
+                    <v-btn color="#1c1c1d" text @click="closeDelete">Cancel</v-btn>
+                    <v-btn color="#1c1c1d" text @click="deleteItemConfirm">OK</v-btn>
                     <v-spacer></v-spacer>
                   </v-card-actions>
                 </v-card>
@@ -214,7 +215,7 @@ export default {
           value: 'name',
         },
         { text: '値段', value: 'price', sortable: false },
-        { text: '個数', value: 'quantity', sortable: false },
+        { text: '個数', value: 'quantity'},
         { text: '小計', value: 'subtotal', sortable: false },
         { text: '編集', value: 'actions', sortable: false },
       ],
@@ -400,7 +401,7 @@ h1 {
   justify-content: center;
   padding: 0px;
   height: 100px;
-  background-color: #79816c;
+  background-color: #fbfbfb;
   font-size: 21px;
 }
 .row-select {
@@ -432,7 +433,7 @@ h1 {
   padding: 5px 15px;
 
   &__heading {
-    color: $cWhite;
+    color: #1c1c1d;
     display: table-cell;
     font-size: 13px;
     text-align: right;
@@ -447,9 +448,9 @@ h1 {
   }
 }
 .v-list {
-  background-color: $cWhite;
+  background-color: #1c1c1d;
 }
 .theme--light.v-toolbar.v-sheet {
-  background-color: #79816c;
+  background-color: #fff;
 }
 </style>

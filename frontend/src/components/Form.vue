@@ -59,7 +59,7 @@
       <v-btn
         :loading="loading"
         color="darkblueshade"
-        style="color: white;"
+        style="color: #fbfbfb;"
         class="mr-4"
         @click="loginButton"
       >
