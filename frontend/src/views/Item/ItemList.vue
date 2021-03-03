@@ -8,7 +8,7 @@
       hide-delimiter-background
       delimiter-icon="mdi-minus"
       height="800"
-      style="opacity: 0.76;"
+      style="opacity: 0.9;"
     >
       <v-carousel-item
         v-for="(slide, i) in slides"

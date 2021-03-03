@@ -183,27 +183,40 @@
             width="100%"
             outlined
           >
-            <v-card-title style="font-weight: bold; letter-spacing: 1px;">ゲストログインはこちらから！！</v-card-title>
+            <v-card-title style="font-weight: bold; letter-spacing: 1px;">ゲストログインはこちらから！</v-card-title>
             <v-card-subtitle>
               Infomation
             </v-card-subtitle>
 
             <v-card-text>
               ゲストログインもありますので、気軽にお試しください！<br>
-              ショップオーナーとして試してみる↓
+              ショップオーナーとして試してみる↓<br>
+              <!-- ストアゲストボタン -->
+              <v-btn
+                class="ma-10"
+                min-width="16%"
+                height="60px"
+                color="#1c1c1d"
+                style="color: #fbfbfb; margin-top: 20px !important;"
+                @click.stop="storeLoginAsaGuest"
+              >
+                ストアゲストとしてログインする
+              </v-btn><br>
             </v-card-text>
-
-          <!-- ボタン -->
-            <v-btn
-              class="ma-10"
-              min-width="16%"
-              height="60px"
-              color="#1c1c1d"
-              style="color: #fbfbfb;"
-              @click.stop="goToStoreLogin"
-            >
-              ログインする
-            </v-btn>
+            <v-card-text>
+              会員登録を試してみる↓<br>
+              <!-- ユーザーゲストボタン -->
+              <v-btn
+                class="ma-10"
+                min-width="16%"
+                height="60px"
+                color="#1c1c1d"
+                style="color: #fbfbfb; margin-top: 20px !important;"
+                @click.stop="userLoginAsaGuest"
+              >
+                ユーザーゲストとしてログインする
+              </v-btn><br>
+            </v-card-text>
           </v-card>
         </v-card>
       </v-lazy>
@@ -233,6 +246,8 @@ export default {
       isActiveCircleRed: false,
       isActiveCircleBlue: false,
       isActiveCircleGreen: false,
+      email: process.env.VUE_APP_MAIL_ADDRESS,
+      password: process.env.VUE_APP_MAIL_PASSWORD,
     }
   },
   methods: {
@@ -242,8 +257,50 @@ export default {
     goToUser() {
       this.$router.push('/user_register');
     },
-    goToStoreLogin() {
-      this.$router.push('/store_login');
+    onError() {
+      // エラー内容を変数に格納
+      this.error = this.$store.getters.errorInfo;
+
+      // アラート判定
+      if (this.error) {
+        this.alert = true;
+
+        // 5s後にリセット
+        setTimeout(() => {
+          this.reset();
+        }, 3600);
+      } else {
+        this.alert = false;
+      }
+
+      // エラー内容リセット
+      this.$store.dispatch('setError', null);
+    },
+    async storeLoginAsaGuest() {
+      await this.$store.dispatch('login', {
+        store_email: this.email,
+        store_password: this.password,
+      });
+
+      // エラーの処理
+      this.onError();
+
+      // リセット
+      this.email = "";
+      this.password = "";
+    },
+    async userLoginAsaGuest(){
+      await this.$store.dispatch('userLogin', {
+        user_email: this.email,
+        password: this.password,
+      });
+
+      // エラーの処理
+      this.onError();
+
+      // リセット
+      this.email = "";
+      this.password = "";
     },
     beforeEnter(el) { //現れる前
       el.style.transform = "scale(0)";
@@ -309,7 +366,7 @@ export default {
 }
 .circle-green {
   position: absolute;
-  top: 1780px;
+  top: 1760px;
   left: 0px;
   z-index: 0;
   width: 400px;
