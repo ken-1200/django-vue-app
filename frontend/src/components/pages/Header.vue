@@ -127,7 +127,7 @@ export default {
 }
 .toolbar {
   &__link {
-    font-size: 1.32rem;
+    font-size: 1.8rem;
   }
 }
 img {

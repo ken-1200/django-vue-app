@@ -20,7 +20,7 @@
         height="300px"
       >
         <v-card-subtitle
-          class="mb-5"
+          class="mb-2"
           style="font-size: 1.12rem"
         >ご購入いただいたあなたへのクーポンをプレゼント!</v-card-subtitle>
         <p>5%OFFのクーポン件です。次回からショップ内でお使いいただけます。</p>
@@ -56,7 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .coupon__img {
-  width: 10rem;
+  width: 8rem;
 }
 a {
   color: #fbfbfb !important;
