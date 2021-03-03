@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <v-col
+    cols="auto"
+    md=auto xl=auto
+  >
     <!-- ユーザーログイン -->
     <!-- 認証無しの時に表示 -->
     <template v-if="!isAuthenticatedUser">
@@ -24,7 +27,7 @@
           </v-btn>
       </v-container>
     </template>
-  </div>
+  </v-col>
 </template>
 
 <script>

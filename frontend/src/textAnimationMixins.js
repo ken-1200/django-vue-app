@@ -13,12 +13,10 @@ class TextAnimation {
   }
   animate() {
     this.DOM.el.classList.toggle('inview');
-    console.log(this.DOM.el);
   }
 }
 export default class TweenTextAnimation extends TextAnimation {
   constructor(el) {
-    console.log(el);
     super(el);
     this.DOM.chars = this.DOM.el.querySelectorAll('.char');
   }

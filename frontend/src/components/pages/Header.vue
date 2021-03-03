@@ -20,7 +20,7 @@
         to="/"
         class="toolbar__link"
       >
-        FURISODE
+        FURRISODE
       </router-link>
     </v-toolbar-title>
 
@@ -127,11 +127,10 @@ export default {
 }
 .toolbar {
   &__link {
-    font-weight: bold;
-    font-size: 2rem;
+    font-size: 1.32rem;
   }
 }
 img {
-  width: 3.2em;
+  width: 4.1rem;
 }
 </style>
