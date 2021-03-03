@@ -3,7 +3,6 @@
     <!-- スクロール用 -->
     <div class="nav-trigger"></div>
     <div class="nav-spacing"></div>
-  
     <!-- ヘッダークラス -->
     <header class="header">
 
@@ -108,13 +107,12 @@ export default {
   height: 56px;
   z-index: 5;
   transition: transform .3s ease;
+  opacity: 1;
   
   &.triggered {
     transform: translateY(-56px);
+    opacity: 0.8;
   }
-}
-.v-main {
-  background-color: #79816c;
 }
 .container {
   padding-right: 0px !important;

@@ -22,7 +22,6 @@ export default class ScrollObserver {
         if (entry.isIntersecting) {
           // 登録した要素が画面に入った場合
           this.cb(entry.target, true);
-          console.log(entry.target);
 
           if (this.once) {
             // 画面内の状態で監視を停止
