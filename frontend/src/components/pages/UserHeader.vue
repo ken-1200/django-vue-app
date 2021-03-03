@@ -20,7 +20,7 @@
         to="/user_home"
         class="toolbar__link"
       >
-        FURISODE
+        FURRISODE
       </router-link>
     </v-toolbar-title>
 
