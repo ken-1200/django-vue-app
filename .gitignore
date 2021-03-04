@@ -4,6 +4,7 @@ node_modules
 /dist
 __pycache__
 mysql
+codepipeline
 
 # local env files
 .env.local

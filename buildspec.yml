@@ -1,0 +1,45 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI_FRONTEND=909937076167.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app
+      - REPOSITORY_URI_GUNICORN=909937076167.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-backend
+      - REPOSITORY_URI_NGINX=909937076167.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-nginx
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI_FRONTEND:latest .
+      - docker tag $REPOSITORY_URI_FRONTEND:latest $REPOSITORY_URI_FRONTEND:$IMAGE_TAG
+      - docker build -t $REPOSITORY_URI_GUNICORN:latest .
+      - docker tag $REPOSITORY_URI_GUNICORN:latest $REPOSITORY_URI_GUNICORN:$IMAGE_TAG
+      - docker build -t $REPOSITORY_URI_NGINX:latest .
+      - docker tag $REPOSITORY_URI_NGINX:latest $REPOSITORY_URI_NGINX:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI_FRONTEND:latest
+      - docker push $REPOSITORY_URI_FRONTEND:$IMAGE_TAG
+      - docker push $REPOSITORY_URI_GUNICORN:latest
+      - docker push $REPOSITORY_URI_GUNICORN:$IMAGE_TAG
+      - docker push $REPOSITORY_URI_NGINX:latest
+      - docker push $REPOSITORY_URI_NGINX:$IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"django-vue-app-container-frontend","imageUri":"%s"}]' $REPOSITORY_URI_FRONTEND:$IMAGE_TAG > imagedefinitions frontend.json
+      - printf '[{"name":"gunicorn","imageUri":"%s"}]' $REPOSITORY_URI_GUNICORN:$IMAGE_TAG > imagedefinitions gunicorn.json
+      - printf '[{"name":"nginx","imageUri":"%s"}]' $REPOSITORY_URI_NGINX:$IMAGE_TAG > imagedefinitions nginx.json
+artifacts:
+    files:
+      - imagedefinitions frontend.json
+      - imagedefinitions gunicorn.json
+      - imagedefinitions nginx.json
