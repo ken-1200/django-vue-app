@@ -366,7 +366,7 @@ export default {
 }
 .circle-green {
   position: absolute;
-  top: 1760px;
+  top: 1900px;
   left: 0px;
   z-index: 0;
   width: 400px;
