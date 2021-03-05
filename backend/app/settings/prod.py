@@ -19,8 +19,8 @@ DEBUG = False
 ALLOWED_HOSTS = ['backend.furrisode.com']
 
 # S3共通の設定(本番)
-AWS_ACCESS_KEY_ID = os.environ.get('ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('SECRET_ACCESS_KEY')
+AWS_ACCESS_KEY_ID = os.environ['ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['SECRET_ACCESS_KEY']
 
 AWS_QUERYSTRING_AUTH = False
 
@@ -56,11 +56,11 @@ DEFAULT_FILE_STORAGE = 'app.settings.backends.MediaStorage'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE'),
-        'USER': os.environ.get('MYSQL_USER'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
-        'HOST': os.environ.get('MYSQL_HOST'),
-        'PORT': os.environ.get('MYSQL_PORT'),
+        'NAME': os.environ['MYSQL_DATABASE'],
+        'USER': os.environ['MYSQL_USER'],
+        'PASSWORD': os.environ['MYSQL_PASSWORD'],
+        'HOST': os.environ['MYSQL_HOST'],
+        'PORT': os.environ['MYSQL_PORT'],
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
             'charset': 'utf8mb4',
