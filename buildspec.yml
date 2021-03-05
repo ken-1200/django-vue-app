@@ -1,5 +1,15 @@
 version: 0.2
 
+env:
+  parameter-store:
+    key: 
+      - "ACCESS_KEY_ID"
+      - "SECRET_ACCESS_KEY"
+      - "MYSQL_DATABASE"
+      - "MYSQL_HOST"
+      - "MYSQL_PASSWORD"
+      - "MYSQL_PORT"
+      - "MYSQL_USER"
 phases:
   install:
     runtime-versions:
