@@ -10,10 +10,12 @@ phases:
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       ## s3からenvファイルを取得する
-      # - aws s3 cp s3://${BUCKET_NAME}/env.txt .env
+      # - aws s3 cp s3://${BUCKET_NAME}/vue_env.txt .env
       - REPOSITORY_URI_FRONTEND=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app
       ## s3からenvファイルを取得する
       - aws s3 cp s3://${BUCKET_NAME}/env.txt .env
+      - echo ls
+      - echo ls -l -a
       - REPOSITORY_URI_GUNICORN=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-backend
       - REPOSITORY_URI_NGINX=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-nginx
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
