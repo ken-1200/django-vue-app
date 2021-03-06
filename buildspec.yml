@@ -36,12 +36,10 @@ phases:
       - docker push $REPOSITORY_URI_GUNICORN:$IMAGE_TAG
       - docker push $REPOSITORY_URI_NGINX:latest
       - docker push $REPOSITORY_URI_NGINX:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - printf '[{"name":"django-vue-app-container-frontend","imageUri":"%s"}]' $REPOSITORY_URI_FRONTEND:$IMAGE_TAG > imagedefinitions frontend.json
-      - printf '[{"name":"gunicorn","imageUri":"%s"}]' $REPOSITORY_URI_GUNICORN:$IMAGE_TAG > imagedefinitions gunicorn.json
-      - printf '[{"name":"nginx","imageUri":"%s"}]' $REPOSITORY_URI_NGINX:$IMAGE_TAG > imagedefinitions nginx.json
+      # - echo Writing image definitions file...
+      # - printf '[{"name":"django-vue-app-container-frontend","imageUri":"%s"}]' $REPOSITORY_URI_FRONTEND:$IMAGE_TAG > imagedefinitions django-vue-app-container-frontend.json
+      # - printf '[{"name":"django-vue-app-container-backend","imageUri":"%s"}]' $REPOSITORY_URI_GUNICORN:$IMAGE_TAG > imagedefinitions django-vue-app-container-backend.json
 artifacts:
     files:
-      - imagedefinitions frontend.json
-      - imagedefinitions gunicorn.json
-      - imagedefinitions nginx.json
+      - imagedefinitions django-vue-app-container-frontend.json
+      - imagedefinitions django-vue-app-container-backend.json
