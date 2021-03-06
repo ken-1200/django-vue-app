@@ -15,9 +15,8 @@ phases:
       ## s3からenvファイルを取得する
       - aws s3 cp s3://${BUCKET_NAME}/.env ./backend
       - ls
-      - echo ls -l -a
+      - ls -l -a
       - REPOSITORY_URI_GUNICORN=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-backend
-      - ls
       - REPOSITORY_URI_NGINX=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-nginx
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
