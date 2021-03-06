@@ -15,7 +15,7 @@
           class="ma-10"
           width="80%"
           height="60px"
-          color="background"
+          style="color: #1c1c1d !important;"
           @click.stop="purchase"
         >
           購入を確定する
