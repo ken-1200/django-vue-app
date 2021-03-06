@@ -20,11 +20,11 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI_FRONTEND:latest . -f ./frontend/Dockerfile.ecs
+      - docker build --no-cache -t $REPOSITORY_URI_FRONTEND:latest . -f ./frontend/Dockerfile.ecs
       - docker tag $REPOSITORY_URI_FRONTEND:latest $REPOSITORY_URI_FRONTEND:$IMAGE_TAG
-      - docker build -t $REPOSITORY_URI_GUNICORN:latest . -f ./backend/Dockerfile.ecs
+      - docker build --no-cache -t $REPOSITORY_URI_GUNICORN:latest . -f ./backend/Dockerfile.ecs
       - docker tag $REPOSITORY_URI_GUNICORN:latest $REPOSITORY_URI_GUNICORN:$IMAGE_TAG
-      - docker build -t $REPOSITORY_URI_NGINX:latest . -f ./backend/Dockerfile.nginx
+      - docker build --no-cache -t $REPOSITORY_URI_NGINX:latest . -f ./backend/Dockerfile.nginx
       - docker tag $REPOSITORY_URI_NGINX:latest $REPOSITORY_URI_NGINX:$IMAGE_TAG
   post_build:
     commands:
