@@ -38,33 +38,35 @@
         required
       ></v-text-field>
 
-      <v-btn
-        :disabled="!valid"
-        :loading="loading"
-        color="success"
-        class="mr-4"
-        @click="validate"
-      >
-        登録する
-      </v-btn>
+      <v-col style="text-align: center;">
+        <v-btn
+          :disabled="!valid"
+          :loading="loading"
+          color="success"
+          class="mr-4"
+          @click="validate"
+        >
+          登録する
+        </v-btn>
 
-      <v-btn
-        color="error"
-        class="mr-4"
-        @click="reset"
-      >
-        修正する
-      </v-btn>
+        <v-btn
+          color="error"
+          class="mr-4"
+          @click="reset"
+        >
+          修正する
+        </v-btn>
 
-      <v-btn
-        :loading="loading"
-        color="darkblueshade"
-        style="color: #fbfbfb;"
-        class="mr-4"
-        @click="loginButton"
-      >
-        登録済みの方はこちらから
-      </v-btn>
+        <v-btn
+          :loading="loading"
+          color="darkblueshade"
+          style="color: #fbfbfb;"
+          class="mr-4"
+          @click="loginButton"
+        >
+          登録済みの方はこちらから
+        </v-btn>
+      </v-col>
     </v-form>
   </div>
 </template>
@@ -137,6 +139,6 @@ export default {
   height: 36px;
   min-width: 64px;
   padding: 0 16px;
-  margin-top: 10px;
+  margin: 10px 5px 0 5px;
 }
 </style>

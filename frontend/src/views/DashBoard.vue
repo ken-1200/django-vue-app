@@ -200,7 +200,7 @@
                 style="color: #fbfbfb; margin-top: 20px !important;"
                 @click.stop="storeLoginAsaGuest"
               >
-                ストアゲストとしてログインする
+                ストアゲスト
               </v-btn><br>
             </v-card-text>
             <v-card-text>
@@ -214,7 +214,7 @@
                 style="color: #fbfbfb; margin-top: 20px !important;"
                 @click.stop="userLoginAsaGuest"
               >
-                ユーザーゲストとしてログインする
+                ユーザーゲスト
               </v-btn><br>
             </v-card-text>
           </v-card>
@@ -314,7 +314,7 @@ export default {
           clearInterval(interval);
           done();  //cssを使わないときは必ずいる。
         }
-      }, 20);
+      }, 10);
     },
     leave(el, done) { //消えるとき
       let scale = 1;  
@@ -325,7 +325,7 @@ export default {
           clearInterval(interval);
           done();  //cssを使わないときは必ずいる。
         }
-      }, 20);
+      }, 10);
     },
   },
   computed: {
