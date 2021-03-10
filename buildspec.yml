@@ -9,8 +9,8 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - aws s3 cp s3://${BUCKET_NAME}/.env.prod ./frontend
-      - aws s3 cp s3://${BUCKET_NAME}/.env ./backend
+      - aws s3 cp s3://${BUCKET_NAME}/vue/.env.prod ./frontend
+      - aws s3 cp s3://${BUCKET_NAME}/django/.env.prod ./backend
       - REPOSITORY_URI_FRONTEND=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app
       - REPOSITORY_URI_GUNICORN=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-backend
       - REPOSITORY_URI_NGINX=${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-nginx
