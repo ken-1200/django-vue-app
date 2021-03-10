@@ -115,4 +115,3 @@ class PaymentViewSetTest(APITestCase):
 
     response = self.client.get('/api/payments/' + str(id) + '/get_payments/', format='json')
     self.assertEqual(response.status_code, status.HTTP_200_OK)
-

@@ -108,5 +108,3 @@ class UserUpdateViewTest(APITestCase):
 
     response = self.client.put('/api/user_update/', request_data, format='json')
     self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-
