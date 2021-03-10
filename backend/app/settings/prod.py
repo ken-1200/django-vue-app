@@ -10,7 +10,7 @@ env = environ.Env()
 # 環境変数でDJANGO_READ_ENV_FILEをTrueにしておくと.envを読んでくれる。
 READ_ENV_FILE = env.bool('DJANGO_READ_ENV_FILE', default=True)
 if READ_ENV_FILE:
-    env_file = str(BASE_DIR.path('.env'))
+    env_file = str(BASE_DIR.path('.env.prod'))
     env.read_env(env_file)
 
 # SECURITY WARNING: don't run with debug turned on in production!

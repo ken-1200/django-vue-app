@@ -16,11 +16,11 @@ AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['MYSQL_DATABASE'],
-        'USER': os.environ['MYSQL_USER'],
-        'PASSWORD': os.environ['MYSQL_PASSWORD'],
-        'HOST': os.environ['MYSQL_HOST'],
-        'PORT': os.environ['MYSQL_PORT'],
+        'NAME': os.environ['DJANGO_MYSQL_DATABASE'],
+        'USER': os.environ['DJANGO_MYSQL_USER'],
+        'PASSWORD': os.environ['DJANGO_MYSQL_PASSWORD'],
+        'HOST': os.environ['DJANGO_MYSQL_HOST'],
+        'PORT': os.environ['DJANGO_MYSQL_PORT'],
         'OPTIONS': {
             'charset': 'utf8mb4',
         }
