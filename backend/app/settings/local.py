@@ -23,6 +23,9 @@ DATABASES = {
         'PORT': os.environ['DJANGO_MYSQL_PORT'],
         'OPTIONS': {
             'charset': 'utf8mb4',
-        }
+        },
+        'TEST': {
+            'NAME': 'test_database',
+        },
     }
 }
