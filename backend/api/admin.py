@@ -1,9 +1,9 @@
 from django.contrib import admin
-from store.models.stores import Store
 from item.models.items import Item
-from user.models.users import User
 from payment.models.payments import Payment
 from payment.models.roles import Role
+from store.models.stores import Store
+from user.models.users import User
 
 # Register your models here.
 admin.site.register(Store)
