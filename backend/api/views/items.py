@@ -1,19 +1,23 @@
+from api.serializers.item import ItemSerializer
+from api.permission import CustomItemPermission
+from api.authentication import CustomAuthentication
+from django.utils import timezone
+from django.core import serializers
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from item.models.items import Item
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from api.serializers.item import ItemSerializer
-from item.models.items import Item
-from django.utils import timezone
 from rest_framework.exceptions import APIException
-from django.core import serializers
-from django.http import HttpResponse, Http404
-from api.permission import CustomItemPermission
-from api.authentication import CustomAuthentication
 from rest_framework import permissions, generics
 from store.models.stores import Store
 
-# Create your views here.
+# APIException
+class NotFound(APIException):
+  status_code = 404
+  default_detail = "見つかりませんでした。"
+  default_code = "HTTP_404_NOT_FOUND"
 
 # 商品一覧
 # モデルインスタンスのコレクションを表すための読み取り/書き込みエンドポイントに使用される get/post
@@ -38,22 +42,16 @@ class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
   """
   アイテム GET(pk指定), PUT, PATCH(item_idに紐づく商品を更新する), DELETE(レコード削除)
   """
+  # 編集や削除は作成者のみが行える
   queryset = Item.objects.all()
   serializer_class = ItemSerializer
   authentication_classes = [CustomAuthentication,]
-  # 編集や削除は作成者のみが行える
   permission_classes = [CustomItemPermission, ]
 
   # 編集メソッド
   def patch(self, request, *args, **kwargs):
     print('認証されたユーザーで商品を編集します。')
     return self.partial_update(request, *args, **kwargs)
-
-# APIException
-class NotFound(APIException):
-  status_code = 404
-  default_detail = "見つかりませんでした。"
-  default_code = "HTTP_404_NOT_FOUND"
 
 # ItemViewSetの作成
 class ItemViewSet(viewsets.ModelViewSet):
@@ -64,10 +62,10 @@ class ItemViewSet(viewsets.ModelViewSet):
   # authentication_classesで使用する認証クラスを指定
   # permission_classesにはこのAPIを使用するための権限を設定
   # IsAuthenticatedはauthentication_classesで設定した認証が行えた場合にこのAPIにアクセス可能
-  authentication_classes = [CustomAuthentication,]
-  permission_classes = [CustomItemPermission,]
   queryset = Item.objects.all()
   serializer_class = ItemSerializer
+  authentication_classes = [CustomAuthentication,]
+  permission_classes = [CustomItemPermission,]
 
 # ストアオーナーに紐づいたアイテムを取得する
   @action(detail=False, methods=['get'])
@@ -86,7 +84,6 @@ class ItemViewSet(viewsets.ModelViewSet):
         ]
       })
     return HttpResponse(content=item_list, content_type="application/json", status=200)
-
 
 # 商品一覧 ユーザーストア共に見れる商品一覧
 class AllItemViewSet(viewsets.ModelViewSet):
