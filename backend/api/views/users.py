@@ -1,26 +1,31 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from api.serializers.user import UserSerializer
-from user.models.users import User
-from django.utils import timezone
-from rest_framework.exceptions import APIException
-from rest_framework import status
-from rest_framework.exceptions import ValidationError
-
-from rest_framework.views import APIView
-from django.http.response import JsonResponse
-from drf_yasg.utils import swagger_auto_schema
-from rest_framework.authtoken.models import Token
 from api.serializers.user_login import UserLoginSerializer
-from rest_framework import authentication, permissions, generics
-from django.http import HttpResponse, Http404
 from api.serializers.user_refresh_token import UserRefreshTokenSerializer
 from api.authentication import UserAuthentication
 from api.permission import CustomUserPermission
+from django.shortcuts import render
+from django.utils import timezone
+from django.http.response import JsonResponse
+from django.http import HttpResponse, Http404
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.exceptions import APIException
+from rest_framework import status
+from rest_framework.exceptions import ValidationError
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from rest_framework import authentication, permissions, generics
+from user.models.users import User
 
 import json
+
+# APIException
+class NotFound(APIException):
+  status_code = 404
+  default_detail = "見つかりませんでした。"
+  default_code = "HTTP_404_NOT_FOUND"
 
 # ログインユーザー情報取得←ここはまだ修正が必要
 class LoginUserGetView(generics.GenericAPIView):
@@ -66,6 +71,9 @@ class UserUpdateView(generics.UpdateAPIView):
 
 # refreshToken
 class UserRefreshToken(APIView):
+  """
+  ユーザー（購入者）のログイン状態「リフレッシュトークン」
+  """
   @swagger_auto_schema(request_body=UserRefreshTokenSerializer(), operation_description="description")
   def post(self, request, format=None):
     try:
@@ -100,9 +108,9 @@ class UserRefreshToken(APIView):
 
 # LoginAPIView-User
 class UserLogin(APIView):
-  # パーミッション解除
-  permission_classes = ()
-
+  """
+  ユーザー（購入者）のログイン
+  """
   @swagger_auto_schema(request_body=UserLoginSerializer, operation_description="description")
   def post(self, request, format=None):
     try:
@@ -147,20 +155,15 @@ class UserLogin(APIView):
     }
     return Response({'message': 'Success', 'data': login_data, 'status': 200})
 
-# APIException
-class NotFound(APIException):
-  status_code = 404
-  default_detail = "見つかりませんでした。"
-  default_code = "HTTP_404_NOT_FOUND"
-
 # UserViewSet
 class UserViewSet(viewsets.ModelViewSet):
-  # パーミッション解除
-  permission_classes = ()
+  """
+  ユーザー（購入者）の登録、削除
+  """
   queryset = User.objects.all()
   serializer_class = UserSerializer
 
-# create
+  # 登録
   @action(detail=False, methods=['post'])
   def create_user(self, request):
     serializer = UserSerializer(data=request.data)
@@ -169,11 +172,10 @@ class UserViewSet(viewsets.ModelViewSet):
       return Response({'user': serializer.data}, status=status.HTTP_201_CREATED)
     return Response({'user': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
-# delete_endpoint
+  # 削除
   @action(detail=True, methods=['delete'])
   def delete_user(self, request, pk=None):
-    print('delete_endpoint')
-    # user削除 emailだけ残す
+    # メールアドレスだけ削除しない
     try:
       user_obj = self.get_object()
       user_obj.user_name = ''

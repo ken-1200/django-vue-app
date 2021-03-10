@@ -1,25 +1,24 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from api.serializers.payment import PaymentSerializer
 from api.serializers.role import RoleSerializer
 from api.serializers.item import ItemSerializer
+from api.authentication import UserAuthentication
+from api.permission import PaymentPermission
+from django.core import serializers
+from django.http import HttpResponse
+from django.shortcuts import render
+from drf_yasg.utils import swagger_auto_schema
+from item.models.items import Item
 from payment.models.payments import Payment
 from payment.models.roles import Role
-from item.models.items import Item
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError
 from rest_framework.exceptions import APIException
-from django.core import serializers
-from django.http import HttpResponse
-from api.authentication import UserAuthentication
-from api.permission import PaymentPermission
-import json
 
-# swagger対応
-from drf_yasg.utils import swagger_auto_schema
+import json
 
 # APIException
 class BadRequest(APIException):
@@ -34,6 +33,9 @@ class NotFound(APIException):
 
 # ModelViewSet
 class PaymentViewSet(viewsets.ModelViewSet):
+  """
+  GET 購入情報取得
+  """
   # 認証/権限
   authentication_classes = [UserAuthentication,]
   permission_classes = (PaymentPermission,)
@@ -119,11 +121,8 @@ class PaymentViewSet(viewsets.ModelViewSet):
 # APIView
 class PaymentList(APIView):
   """
-  List all payments, or create a new payments.
+  商品購入API
   """
-  # パーミッション解除
-  permission_classes = ()
-
   @swagger_auto_schema(request_body=PaymentSerializer(), operation_description="description")
   def post(self, request, format=None):
     serializer = PaymentSerializer(data=request.data)

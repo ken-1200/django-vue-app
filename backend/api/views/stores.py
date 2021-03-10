@@ -1,32 +1,37 @@
-from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework.decorators import action
-from rest_framework.response import Response
 from api.serializers.store import StoreSerializer
-from store.models.stores import Store
-from django.utils import timezone
-from rest_framework.exceptions import APIException
-from rest_framework import status
-from rest_framework.exceptions import ValidationError
-from rest_framework.views import APIView
-from customtoken.models.customtoken import CustomToken
 from api.serializers.store_login import StoreLoginSerializer
-from django.http.response import JsonResponse
-from django.contrib.auth.hashers import check_password
-from rest_framework import authentication, permissions, generics
-from django.http import HttpResponse, Http404
-from item.models.items import Item
 from api.serializers.item import ItemSerializer
 from api.permission import CustomItemPermission, CustomStorePermission
 from api.authentication import CustomAuthentication
 from api.serializers.store_refresh_token import StoreRefreshTokenSerializer
+from customtoken.models.customtoken import CustomToken
+from django.shortcuts import render
+from django.utils import timezone
+from django.http.response import JsonResponse
+from django.contrib.auth.hashers import check_password
+from django.http import HttpResponse, Http404
+from drf_yasg.utils import swagger_auto_schema
+from item.models.items import Item
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.exceptions import APIException
+from rest_framework import status
+from rest_framework.exceptions import ValidationError
+from rest_framework.views import APIView
+from rest_framework import authentication, permissions, generics
+from store.models.stores import Store
 
 # Pythonの標準ライブラリのjsonモジュールを使うと
 # JSON形式のファイルや文字列をパース（解析）して辞書dictなどのオブジェクトとして読み込める
 # JSONに相当するオブジェクトを整形してJSON形式のファイルや文字列として出力・保存することも可能
 import json
-# swagger対応
-from drf_yasg.utils import swagger_auto_schema
+
+# APIException
+class NotFound(APIException):
+  status_code = 404
+  default_detail = "見つかりませんでした。"
+  default_code = "HTTP_404_NOT_FOUND"
 
 # ログインユーザー情報取得
 class LoginStoreUserGetView(generics.GenericAPIView):
@@ -67,6 +72,9 @@ class StoreUserUpdateView(generics.UpdateAPIView):
 
 # refreshToken
 class StoreRefreshToken(APIView):
+  """
+  ショップオーナー（ストア側）のログイン状態「リフレッシュトークン」
+  """
   @swagger_auto_schema(request_body=StoreRefreshTokenSerializer(), operation_description="description")
   def post(self, request, format=None):
     try:
@@ -80,7 +88,10 @@ class StoreRefreshToken(APIView):
     if not CustomToken.objects.filter(refresh_key=refresh_key).exists():
       # 存在しない場合
       return JsonResponse({'message': 'リフレッシュトークンが違います。'}, status=403)
+
+    # トークン取得
     customtoken = CustomToken.objects.get(refresh_key=refresh_key)
+
     # リフレッシュトークンを使ってアクセストークンのアクセス日時を更新する
     customtoken.update_token()
 
@@ -95,9 +106,9 @@ class StoreRefreshToken(APIView):
 
 # LoginAPIView-Store
 class StoreLogin(APIView):
-  # パーミッション解除
-  permission_classes = ()
-
+  """
+  ショップオーナー（ストア側）のログイン
+  """
   @swagger_auto_schema(request_body=StoreLoginSerializer(), operation_description="description")
   def post(self, request, format=None):
     try:
@@ -137,23 +148,15 @@ class StoreLogin(APIView):
     }
     return Response({'message': 'Success', 'data': login_data, 'status': 200})
 
-# APIException
-class NotFound(APIException):
-  status_code = 404
-  default_detail = "見つかりませんでした。"
-  default_code = "HTTP_404_NOT_FOUND"
-
 # StoreViewSetの作成
 class StoreViewSet(viewsets.ModelViewSet):
   """
-  API endpoint that allows stores to be viewed or edited.
+  ショップオーナー（ストア側）の登録、削除
   """
-  # パーミッション解除
-  permission_classes = ()
   queryset = Store.objects.all()
   serializer_class = StoreSerializer
 
-# create
+# 登録
   @action(detail=False, methods=['post'])
   def create_store(self, request):
     serializer = StoreSerializer(data=request.data)
@@ -163,10 +166,10 @@ class StoreViewSet(viewsets.ModelViewSet):
       return Response({'store': serializer.data}, status=status.HTTP_201_CREATED)
     return Response({'store': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
-# delete_endpoint
+# 削除
   @action(detail=True, methods=['delete'])
   def delete_store(self, request, pk=None):
-    # store削除 emailだけ残す
+    # メールアドレスだけ削除しない
     try:
       store_obj = self.get_object()
       store_obj.store_name = ''
