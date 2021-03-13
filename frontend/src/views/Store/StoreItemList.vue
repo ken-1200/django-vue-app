@@ -148,14 +148,11 @@ export default {
     },
     async itemDelete(item_id) {
       await axios.delete(`/all/${item_id}/delete_item/`)
-      .then(response => {
-        console.log(response.data.data);
-
+      .then(() => {
         // リロードする
         this.$router.go({ name: 'item_detail', query: { page: this.$store.getters.store_id }});
       })
       .catch(error => {
-        console.log(error);
         // ステータス400返却時
         if (error.response.status == 400) {
           window.alert(error.message);

@@ -88,9 +88,8 @@ export default {
         user_email: this.email,
         password: this.password,
       })
-      .then(response => {
+      .then(() => {
         this.$router.push('/user_login');
-        console.log(response.data);
       })
       .catch(error => {
         this.onError(error);

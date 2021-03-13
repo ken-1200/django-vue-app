@@ -36,24 +36,10 @@ export default new Router({
     {
       path: '/store_register',
       component: StoreRegister,
-      // beforeEnter(to, from, next) {
-      //   if (store.getters.access_token) {//access_tokenがある場合は登録せず、ダッシュボード画面へ
-      //     next('/');
-      //   } else {
-      //     next();
-      //   }
-      // }
     },
     {
       path: '/store_login',
       component: StoreLogin,
-      // beforeEnter(to, from, next) {
-      //   if (store.getters.access_token) {//access_tokenがある場合はログインぜず、ダッシュボード画面へ
-      //     next('/');
-      //   } else {
-      //     next();
-      //   }
-      // }
     },
     {
       path: '/store_home',

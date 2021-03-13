@@ -165,7 +165,6 @@ export default {
     },
     // 商品作成
     async postItems() {
-      console.log(this.createItems)
       await axios.post('/item_list/', {
         item_name: this.createItems.name,
         item_detail: this.createItems.detail,
@@ -177,8 +176,7 @@ export default {
           Authorization: `Bearer ${this.accessToken}`,
         }
       })
-      .then(response => {
-        console.log(response);
+      .then(() => {
         this.$router.push({ name: 'item_detail', query: { page: this.$store.getters.store_id }});
 
         // 初期化

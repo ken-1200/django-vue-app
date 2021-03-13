@@ -32,7 +32,6 @@ export default {
     if (isExpired) {
       // １時間有効期限切れの場合
       await dispatch('userRefreshAccessToken', refreshToken);
-      console.log('トークンを更新しました。');
     } else {
       // 有効期限内の場合、残り時間を取得する
       const expiresInMs = userExpiryTimeMs - now.getTime();
@@ -63,8 +62,6 @@ export default {
       password: loginData.password,
     })
     .then(response => {
-      console.log(response.data.data);
-
       // user_id
       const id = response.data.data.user_id;
 
@@ -155,7 +152,6 @@ export default {
     // リフレッシュトークンを使って、1時間置きにトークンを更新する
     setTimeout(() => {
       dispatch('userRefreshAccessToken', authData.refresh_token);
-      console.log('1時間おきに更新しました。');
     }, authData.expires_in * 1000);
   },
   // ログアウト
@@ -183,9 +179,7 @@ export default {
   // 退会
   user_withDrawal({ commit, dispatch }, id) {
     axios.delete(`/users/${id}/delete_user/`)
-    .then(response => {
-      console.log(response);
-    })
+    .then(() => {})
     .catch(error => {
       // ステータス400返却時
       if (error.response.status == 400) {
@@ -220,15 +214,13 @@ export default {
   async getItemList({ commit }) {
     await axios.get('/all/items_list/')
     .then(response => {
-      console.log(response);
       // コミット実行で商品リストを格納
       commit('getAllItemListData', response.data);
     })
     .catch(error => {
       // エラー処理
       this.getters.errorInfo = `商品が見つかりませんでした。${error}`;
-      console.log(error);
-    })
+    });
   },
   // カートの処理/制御
   addToCart({ state, commit }, itemData) {
@@ -282,7 +274,6 @@ export default {
       }
     })
     .then(response => {
-      console.log(response.data);
       // 購入情報をコミット
       commit('getPaymentInfo', response.data);
     })

@@ -188,8 +188,7 @@ export default {
           Authorization: `Bearer ${this.accessToken}`
         }
       })
-      .then(response => {
-        console.log(response.data);
+      .then(() => {
         // 商品一覧（オーナーのみ）に遷移する
         this.$router.push({ name: 'item_detail', query: { page: this.$store.getters.store_id }});
 
