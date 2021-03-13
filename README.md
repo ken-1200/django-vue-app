@@ -62,8 +62,8 @@
 | ---- | ---- |
 | Django（Rest-Framework） | RESTful API |
 | Mysql | データベース |
-| Swagger | ドキュメント |
-| Redoc | ドキュメント |
+| Swagger | ドキュメント: <https://backend.furrisode.com/api/swagger/> |
+| Redoc | ドキュメント: <https://backend.furrisode.com/api/redoc/> |
 
 - Djangoは「Django-Rest-Framework」を使用しており、フロントエンドからのリクエストに対してレスポンスを返しています。
 - SwaggerやRedocでAPIのテストやIFの仕様が分かりやすいように工夫しました。
@@ -94,14 +94,16 @@
 | Github | バージョン管理 |
 
 - ローカル、本番環境共にDockerを使用しました。
-- ALBを通すことで常時SSL通信しています。
+- ALBを通すことで常時SSL通信化。
 - AWS CodePipelineを使用してgit pushでAmazon ECSをデプロイしています。
 - 本番環境の環境変数は、CodeBuildを実行中にS3から.envファイルをコピーしてきています。
+- 『Sourceステージ → Testステージ → Buildステージ → Deployステージ』のパイプラインで実行。
+- Testステージで問題が発生した場合は当該ソースでデプロイは実行されません。
 - 本番環境のバックエンドのアプリケーションサーバー(WSGIサーバー)はGunicornを使用し、WebサーバーはNginxを使用しています。
 
 ## AWS構造図
 大まかなAWSで使用したサービスのアーキテクチャ図。
-![aws](https://django-vue-app-readme.s3-ap-northeast-1.amazonaws.com/django-vue-app-aws_ver1.2.png)
+![aws](https://django-vue-app-readme.s3-ap-northeast-1.amazonaws.com/django-vue-app-aws_ver1.3.png)
 
 ## DB構造図
 必要最低限のテーブルを作成。
