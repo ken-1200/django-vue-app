@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Starting Tests...
+      - aws s3 cp s3://${BUCKET_NAME}/.env ./
+      - docker-compose build
+      - docker-compose up -d
+  build:
+    commands:
+      - echo Starting Frontend Container Tests...
+      - ls
+      - cd frontend
+      - docker-compose exec vue_web sh
+      - npm test
+      - exit
+      - cd ..
+      - echo Starting Backend Container Tests...
+      - cd backend
+      - docker-compose exec web bash
+      - python3 manage.py test
+      - exit
