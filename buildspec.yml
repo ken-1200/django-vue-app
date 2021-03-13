@@ -38,5 +38,5 @@ phases:
       - docker push $REPOSITORY_URI_NGINX:$IMAGE_TAG
 artifacts:
     files:
-      - imagedefinitions django-vue-app-container-frontend.json
-      - imagedefinitions django-vue-app-container-backend.json
+      - aws s3 cp s3://${BUCKET_NAME}/imagedefinitions django-vue-app-container-frontend.json
+      - aws s3 cp s3://${BUCKET_NAME}/imagedefinitions django-vue-app-container-backend.json
