@@ -4,10 +4,8 @@ phases:
   pre_build:
     commands:
       - echo Starting Tests...
-      - ls -la
       - aws s3 cp s3://${BUCKET_NAME}/vue/.env.prod ./frontend
       - aws s3 cp s3://${BUCKET_NAME}/django/.env.prod ./backend
-      - ls -la
       - cd backend
       - pip install -r requirements.txt
       - pip install --upgrade pip
@@ -23,17 +21,14 @@ phases:
       - pip install django-environ
       - cd ..
       - cd frontend
-      - ls -la
       - npm install
       - cd ..
   build:
     commands:
       - echo Starting Backend Container Tests...
       - cd backend
-      - ls -la
       - python3 manage.py test --keepdb api --settings app.settings.prod
       - echo Starting Frontend Container Tests...
       - cd ..
       - cd frontend
-      - ls -la
       - npm test
