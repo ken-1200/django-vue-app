@@ -25,7 +25,6 @@ phases:
       - cd frontend
       - ls -la
       - npm install
-      - npm run serve
       - cd ..
   build:
     commands:
