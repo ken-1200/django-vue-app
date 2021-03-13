@@ -1,6 +1,0 @@
-[
-  {
-    "name": "django-vue-app-container-frontend",
-    "imageUri": "${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app:latest"
-  }
-]
