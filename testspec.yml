@@ -28,7 +28,7 @@ phases:
       - echo Starting Backend Container Tests...
       - cd backend
       - ls -la
-      - python3 manage.py test --keepdb api
+      - python3 manage.py test --keepdb api --settings app.settings.prod
       - echo Starting Frontend Container Tests...
       - cd ..
       - cd frontend
