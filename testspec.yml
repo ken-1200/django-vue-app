@@ -24,12 +24,12 @@ phases:
       - ls -la
   build:
     commands:
-      - echo Starting Frontend Container Tests...
-      - ls
-      - cd frontend
-      - npm test
-      - cd ..
       - echo Starting Backend Container Tests...
       - cd backend
+      - ls -la
       - python3 manage.py test --keepdb api
-      - exit
+      - echo Starting Frontend Container Tests...
+      - cd ..
+      - cd frontend
+      - ls -la
+      - npm test
