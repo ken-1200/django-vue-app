@@ -1,10 +1,10 @@
 [
   {
     "name": "gunicorn",
-    "imageUri": "909937076167.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-backend:latest"
+    "imageUri": "${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-backend:latest"
   },
   {
     "name": "nginx",
-    "imageUri": "909937076167.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-nginx:latest"
+    "imageUri": "${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/django-vue-app-nginx:latest"
   }
 ]

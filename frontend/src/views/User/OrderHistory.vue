@@ -80,7 +80,6 @@ export default {
     this.paymentInfo = this.$store.getters.paymentInfo;
 
     // 購入履歴がない場合
-    console.log(this.paymentInfo.length);
     if (this.paymentInfo.length == 0) {
       return this.error = "購入履歴がありません。"
     }
@@ -110,7 +109,6 @@ export default {
         this.paymentRole.sort((a,b) => (a.pay_id < b.pay_id ? 1 : -1));
       })
       .catch(error => {
-        console.log(error);
         this.error = error;
       });
     });

@@ -380,7 +380,6 @@ export default {
   top: -2px;
   border-bottom: 1px solid #DDD;
 }
-
 .v-card__text::after {
   position: absolute;
   content: " ";

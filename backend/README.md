@@ -1,4 +1,4 @@
-# vue_docker
+# django_docker
    - コンテナ-Django
    `docker-compose exec web bash`
  - 実行に必要な環境

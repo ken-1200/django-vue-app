@@ -18,7 +18,6 @@ export default new Vuetify({
         error: "#FF5252",
         white: "#FFF",
         darkblueshade: "#308DC2",
-        background: "#fbfbfb",
       }
     }
   },

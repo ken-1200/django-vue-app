@@ -88,9 +88,8 @@ export default {
         store_email: this.email,
         store_password: this.password,
       })
-      .then(response => {
+      .then(() => {
         this.$router.push('/store_login');
-        console.log(response.data);
       })
       .catch(error => {
         this.onError(error);

@@ -143,7 +143,6 @@ export default {
         "user_email": this.userEmail,
       })
       .then(response => {
-        console.log(response.data);
         // 決済確認画面遷移
         this.$router.push('/payment');
 
@@ -163,7 +162,8 @@ export default {
         this.role = [];
       })
       .catch(error => {
-        console.log(error);
+        // エラー処理
+        this.$store.dispatch('setError', error);
       });
     }
   },
@@ -233,9 +233,6 @@ export default {
     this.totalPrice = this.cartInfo.reduce((acc, cur) => {
       return acc + Number(cur.subtotal.replace(/,/g, '').replace(/¥/g, ''));
     }, 0);
-
-    console.log(this.cartInfo);
-    console.log(this.role);
   },
 }
 </script>

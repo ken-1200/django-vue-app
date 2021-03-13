@@ -11,14 +11,12 @@ const actions = {
       }
     })
     .then(response => {
-      console.log(response.data);
       // コミット実行で、商品データを格納
       commit('getItemDetail', response.data);
     })
     .catch(error => {
       // エラー処理
       this.getters.errorInfo = `商品が見つかりませんでした。${error}`;
-      console.log(error);
     });
   },
   // オートログイン
@@ -47,7 +45,6 @@ const actions = {
     if (isExpired) {
       // １時間有効期限切れの場合
       await dispatch('refreshAccessToken', refreshToken);
-      console.log('トークンを更新しました。');
     } else {
       // 有効期限内の場合、残り時間を取得する
       const expiresInMs = expiryTimeMs - now.getTime();
@@ -71,7 +68,6 @@ const actions = {
       store_password: loginData.store_password
     })
     .then(response => {
-      console.log(response.data.data);
       dispatch('setAuthData', {
         // オブジェクトでid, 有効期限、アクセス、リフレッシュトークンを渡す
         store_id: response.data.data.store_id,
@@ -151,10 +147,9 @@ const actions = {
     // リフレッシュトークンを使って、1時間置きにトークンを更新する
     setTimeout(() => {
       dispatch('refreshAccessToken', authData.refresh_token);
-      console.log('1時間おきに更新しました。')
     }, authData.expires_in * 1000);
   },
-}
+};
 
 export default {
   actions,
