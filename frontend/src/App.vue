@@ -1,5 +1,5 @@
 <template>
-  <v-app :style="{ background: $vuetify.theme.themes.light.background }">
+  <v-app>
     <!-- スクロール用 -->
     <div class="nav-trigger"></div>
     <div class="nav-spacing"></div>
