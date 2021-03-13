@@ -328,16 +328,6 @@ export default {
       }, 10);
     },
   },
-  computed: {
-    isAuthenticated() {
-      // access_tokenがある場合
-      return this.$store.getters.access_token != null; 
-    },
-    isAuthenticatedUser() {
-      // access_tokenがある場合
-      return this.$store.getters.user_access_token != null; 
-    },
-  },
 }
 </script>
 

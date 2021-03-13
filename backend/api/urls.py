@@ -1,17 +1,14 @@
-from rest_framework import routers
-from django.urls import path
-from django.conf.urls import include, re_path
 from api.views.stores import StoreViewSet, StoreLogin, LoginStoreUserGetView, StoreUserUpdateView, StoreRefreshToken
 from api.views.items import ItemViewSet, ItemList, ItemDetail, AllItemViewSet
 from api.views.users import UserViewSet, UserLogin, LoginUserGetView, UserUpdateView, UserRefreshToken
 from api.views.payments import PaymentList, PaymentViewSet
-from rest_framework.authtoken import views
-
-
-# drf_yasg code starts here
-from rest_framework import permissions
+from django.urls import path
+from django.conf.urls import include, re_path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework.authtoken import views
+from rest_framework import routers
+from rest_framework import permissions
 
 schema_view = get_schema_view(
   openapi.Info(
@@ -27,7 +24,6 @@ schema_view = get_schema_view(
   public=True,
   permission_classes=(permissions.AllowAny,),
 )
-# ends here
 
 # ViewSet
 router = routers.DefaultRouter()

@@ -1,8 +1,8 @@
-from rest_framework import serializers
-from store.models.stores import Store, CustomStoreManager
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import check_password
+from rest_framework import serializers
+from store.models.stores import Store, CustomStoreManager
 
 class StoreSerializer(serializers.ModelSerializer):
   store_password = serializers.CharField(write_only=True, required=False)

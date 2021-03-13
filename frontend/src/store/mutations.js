@@ -53,6 +53,7 @@ export default {
     getPaymentInfo(state, paymentInfo) {
       state.paymentInfo = paymentInfo;
     },
+    // エラー情報更新
     setErrorInfo(state, errorInfo) {
       state.errorInfo = errorInfo;
     },

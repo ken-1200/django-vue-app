@@ -24,7 +24,7 @@ const actions = {
   // オートログイン
   async autoLogin({ commit, dispatch }) {
     // ローカルストレージからストアidを取得する
-    const StoreId = localStorage.getItem('StoreId');
+    const storeId = localStorage.getItem('storeId');
 
     // ローカルストレージからアクセストークンを取得する
     const accessToken = localStorage.getItem('refreshAccessToken');
@@ -61,7 +61,7 @@ const actions = {
       commit('updateAccessToken', accessToken);
 
       // ストアidをステートに保存する
-      commit('updateStoreId', StoreId);
+      commit('updateStoreId', storeId);
     }
   },
   // ログイン
@@ -97,14 +97,14 @@ const actions = {
     // AccessTokenを削除
     commit('updateAccessToken', null);
 
-    // StoreIdを削除
+    // storeIdを削除
     commit('updateStoreId', null);
 
     // ItemDataを削除
     commit('getItemDetail', []);
 
     // ローカルストレージから各アイテムを削除
-    localStorage.removeItem('StoreId');
+    localStorage.removeItem('storeId');
     localStorage.removeItem('refreshAccessToken');
     localStorage.removeItem('expiryTimeMs');
     localStorage.removeItem('refreshToken');
@@ -143,7 +143,7 @@ const actions = {
     commit('updateStoreId', authData.store_id);
 
     // ローカルストレージにアクセストークンと有効期限時間とリフレッシュトークンを保存する(有効期限(12H)も保存)
-    localStorage.setItem('StoreId', authData.store_id);
+    localStorage.setItem('storeId', authData.store_id);
     localStorage.setItem('refreshAccessToken', authData.access_token);
     localStorage.setItem('refreshToken', authData.refresh_token);
     localStorage.setItem('expiryTimeMs', expiryTimeMs);

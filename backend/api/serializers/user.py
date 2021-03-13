@@ -1,7 +1,7 @@
-from rest_framework import serializers
-from user.models.users import User, CustomUserManager
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import check_password, make_password
+from rest_framework import serializers
+from user.models.users import User, CustomUserManager
 
 class UserSerializer(serializers.ModelSerializer):
   password = serializers.CharField(write_only=True, required=False)

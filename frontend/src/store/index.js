@@ -8,7 +8,7 @@ import actionsStore from './actionsStore';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: { //初期値
+  state: {
     access_token: null,
     user_access_token: null,
     store_id: null,
