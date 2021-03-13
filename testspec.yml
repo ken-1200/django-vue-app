@@ -22,7 +22,10 @@ phases:
       - pip install psycopg2-binary
       - pip install django-environ
       - cd ..
+      - cd frontend
       - ls -la
+      - yarn global add @vue/cli@3.12.0
+      - cd ..
   build:
     commands:
       - echo Starting Backend Container Tests...
