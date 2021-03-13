@@ -4,7 +4,9 @@ phases:
   pre_build:
     commands:
       - echo Starting Tests...
+      - ls -la
       - aws s3 cp s3://${BUCKET_NAME}/.env ./
+      - python3 manage.py test
       - docker-compose build
       - docker-compose up -d
   build:
