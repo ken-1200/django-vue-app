@@ -28,7 +28,7 @@ RUN pip install gunicorn
 
 COPY ./backend/ .
 
-RUN python3 manage.py migrate --settings app.settings.prod
+# RUN python3 manage.py migrate --settings app.settings.prod
 
 RUN mkdir -p /var/run/gunicorn
 
