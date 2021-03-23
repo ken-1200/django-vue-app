@@ -28,6 +28,7 @@ RUN pip install gunicorn
 
 COPY ./backend/ .
 
+# NATゲートウェイの料金が高いので、RDSにアクセスしないように一時的に修正
 # RUN python3 manage.py migrate --settings app.settings.prod
 
 RUN mkdir -p /var/run/gunicorn
