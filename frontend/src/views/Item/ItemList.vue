@@ -28,7 +28,7 @@
         color="#fff"
         style="color: #1c1c1d"
       >
-        <v-card-title id="titleInfo">Infomation</v-card-title>
+        <v-card-title id="titleInfo">Information</v-card-title>
         <v-card-text style="color: #1c1c1d">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a leo ante. Vivamus ac lacinia diam. Aenean sed magna ligula. Vivamus ultrices euismod sapien, non egestas erat semper quis. Curabitur lorem erat, finibus at fringilla ut, egestas id sapien. Suspendisse dignissim felis vitae urna ultrices varius. Integer vulputate augue scelerisque.
         </v-card-text>
