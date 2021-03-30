@@ -32,7 +32,7 @@
         </v-card-title>
 
         <v-card-subtitle>
-          Infomation
+          Information
         </v-card-subtitle>
 
         <v-card-text style="padding: 10px 16px 0 16px; text-align: left;">
@@ -78,7 +78,7 @@
         <v-card>
           <v-card-title style="font-weight: bold; letter-spacing: 1px;">ショップのオーナーとして登録しましょう！</v-card-title>
           <v-card-subtitle>
-            Infomation
+            Information
           </v-card-subtitle>
 
           <v-card-text>
@@ -133,7 +133,7 @@
           >
             <v-card-title style="font-weight: bold; letter-spacing: 1px;">好きな商品を購入しましょう！</v-card-title>
             <v-card-subtitle>
-              Infomation
+              Information
             </v-card-subtitle>
 
             <v-card-text>
