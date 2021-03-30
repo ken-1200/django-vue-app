@@ -27,7 +27,7 @@ phases:
     commands:
       - echo Starting Backend Container Tests...
       - cd backend
-      # mergeするために一旦コメントアウト
+      # NATゲートウェイの料金が高いので、RDSにアクセスしないように修正
       # - python3 manage.py test --keepdb api --settings app.settings.prod
       - echo Starting Frontend Container Tests...
       - cd ..
