@@ -185,7 +185,7 @@
           >
             <v-card-title style="font-weight: bold; letter-spacing: 1px;">ゲストログインはこちらから！</v-card-title>
             <v-card-subtitle>
-              Infomation
+              Information
             </v-card-subtitle>
 
             <v-card-text>
